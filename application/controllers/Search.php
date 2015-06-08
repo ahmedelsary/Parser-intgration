@@ -222,21 +222,20 @@ class Search extends CI_Controller
     }
 
 
-    function SimpleSearchApi($keyword)
+    function SimpleSearchApi()
     {
-
-        $result = $this->Home_model->simpleSearchModel($keyword);
-
-        // Build our view's data object
-        $data = array('response' => $result);
-        // Load the JSON view
-        $this->load->view('simplesearch', $data);
-
+        header('Content-Type: application/json');
+        $keyword = $this->input->post['keyword'];
+        $result = new ArrayObject();
+        $result['items'] = $this->Home_model->simpleSearchModel($keyword);
+        echo json_encode($result);
     }
 
 
     function AdvancedSearchApi()
     {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
 
         $count = 0;
 
@@ -388,13 +387,13 @@ class Search extends CI_Controller
         }
 
 
-        $result = $this->Home_model->AdvancedSearchModel($sql);
-
+        $result['items'] = $this->Home_model->AdvancedSearchModel($sql);
+        echo json_encode($result);
         // Build our view's data object
-        $data = array('response' => $result);
+//        $data = array('response' => $result);
 
         // Load the JSON view
-        $this->load->view('advencedsearch', $data);
+//        $this->load->view('advencedsearch', $data);
 
 
     }
