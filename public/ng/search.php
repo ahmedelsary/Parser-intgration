@@ -36,6 +36,10 @@
              <label class="nn">get data from websites now </label> <input type="checkbox" name="now">
             </div>
             
+            <div class="col-xs-12">
+             <label class="nn">Advanced Search</label> <input type="checkbox" name="now">
+            </div>
+            
         </div>
     </form>
     <div style="margin-left:30px; margin-top: 70px;">
@@ -121,10 +125,91 @@
                 
                 <div class="row" style="height: 900px;"> 
         <div class="span9">
-            <div class="">
-                <h1 class="span9"></h1>
-                <h6 class="span9"></h6>
-                
+            
+           <div class="container">
+   
+     <div class="col-md-4">
+        <div class="panel ">
+            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
+                <h3 class="panel-title">title</h3>
             </div>
+            <div class="panel-body" >
+             
+
+                <div class="col-md-12">
+                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                             style="width:150px;height:150px">
+                    </a>
+
+                </div>
+               
+                <table class="table">
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                
+                    <tr>
+
+                        <td>price</td>
+                        <td>year</td>
+
+                        <td>type</td>
+
+                    </tr>
+                </table>
+            </div>
+            </div>
+</div>
+        
+
+        <div class="col-md-4">
+        <div class="panel ">
+            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
+                <h3 class="panel-title">title</h3>
+            </div>
+            <div class="panel-body" >
+             
+
+                <div class="col-md-12">
+                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                             style="width:150px;height:150px">
+                    </a>
+
+                </div>
+               
+                <table class="table">
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                
+                    <tr>
+
+                        <td>price</td>
+                        <td>year</td>
+
+                        <td>type</td>
+
+                    </tr>
+                </table>
+            </div>
+            </div>
+</div>
+         
+          
+
+
+
+
+<!--            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Error</h3>
+                </div>
+               
+               
+
+
+            </div>-->
+
+                     
         </div>
     </div>  
