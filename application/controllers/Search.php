@@ -400,6 +400,145 @@ class Search extends CI_Controller
             echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
         }
     }
+    function SimpleSearchReport()
+    {
+        $this->load->view('simpleSearchReport');
+        //$this->load->view('SimpleSearchReport_view');
+        if ($this->input->post('sub')) 
+        {
+                    $type = $this->input->post('type');
+            if ($type == 'Top')
+            {
+                $result = $this->Home_model->searchReport();
+                $data = array('response' => $result);
+                        $this->load->view('SimpleSearchReport_view', $data);
+            }
+            elseif ($type == 'Dayly')
+            {
+                $result = $this->Home_model->searchReportDayly();
+                $data = array('response' => $result);
+                        $this->load->view('SimpleSearchReport_view', $data);
+            }
+            elseif ($type == 'Weekly')
+            {
+                $result = $this->Home_model->searchReportWeekly();
+                $data = array('response' => $result);
+                        $this->load->view('SimpleSearchReport_view', $data);
+            }
+            elseif ($type == 'Monthly')
+            {
+                $result = $this->Home_model->searchReportMonthly();
+                $data = array('response' => $result);
+                        $this->load->view('SimpleSearchReport_view', $data);
+            }
+            elseif ($type == 'Yearly')
+            {
+                $result = $this->Home_model->searchReportYearly();
+                $data = array('response' => $result);
+                        $this->load->view('SimpleSearchReport_view', $data);
+                
+            }
+        }
+        //$result = $this->Home_model->searchReport();
+        //var_dump($result);
+        
+    }
+
+    function SimpleSearchReportUser()
+    {
+        
+        //$this->load->view('SimpleSearchReport_view');
+        $result = $this->Home_model->searchReportForUser();
+        //var_dump($result);
+                $data = array('response' => $result);
+                $this->load->view('SimpleSearchReport_view', $data);
+    }
+    function printpdf()
+    {
 
 
+        if ($this->input->post('pdf')) 
+        {
+            $pdfkeyword = $this->input->post('keyword');
+            $pdfcount   = $this->input->post('count');
+        $this->pdf->AddPage();
+
+        $this->pdf->SetFont('Arial','',12);
+        // Background color
+        $this->pdf->SetFillColor(200,220,255);
+        // Title
+        $this->pdf->Cell(0,6,"WebParser:BE ",0,1,'C',true);
+        // Line break
+        $this->pdf->Ln(4);
+
+
+         $this->pdf->SetFont('Arial','B',15);
+         // Move to the right
+         $this->pdf->Cell(80);
+         // Framed title
+         $this->pdf->Cell(30,10,'Report',1,0,'C');
+         // Line break
+         $this->pdf->Ln(20);
+
+         $this->pdf->SetFont('Arial','B',16);
+
+        for ($i=0;$i< count($pdfkeyword);$i++) {
+
+            $this->pdf->Cell(100, 10, $pdfkeyword[$i], 1, 0, 'C');
+            $this->pdf->Cell(40, 10, $pdfcount[$i], 1, 1, 'C');
+
+
+        }
+
+        // Position at 1.5 cm from bottom
+        $this->pdf->SetY(266);
+        // Arial italic 8
+        $this->pdf->SetFont('Arial','I',8);
+
+        // Text color in gray
+        $this->pdf->SetTextColor(128);
+
+        // Page number
+
+        $this->pdf->Cell(0,10,'Page '.$this->pdf->PageNo(),0,0,'C');
+        $this->pdf->Output();
+
+        }
+
+    }
+
+    function printcsv(){
+
+
+        if ($this->input->post('csv')) 
+        {
+            
+            $csvkeyword = $this->input->post('keyword');
+            $csvcount   = $this->input->post('count');
+/*var_dump($csvkeyword);
+var_dump($csvcount);
+exit;*/
+        $report=array();
+        for($i=0;$i<count($csvcount);$i++)
+        {   
+
+        $report[]=array($csvkeyword[$i],$csvcount[$i]);
+
+        }   
+
+
+        $R=new CI_PHPReport();
+        $R->load(array(
+                'id'=>'report',
+                'data'=>$report
+            )
+        );
+
+        echo $R->render('csv');
+        //exit();
+        }
+        }
+
+
+    }
 }
