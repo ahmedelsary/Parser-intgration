@@ -78,7 +78,6 @@ class Admin extends CI_Controller
                 $con = file_get_contents($fpath);
                 $content = explode("\n", $con);
                 $result['items'] = $content;
-//                $this->load->view('Admin', $cont);
                 echo json_encode($result); 
             }
         }

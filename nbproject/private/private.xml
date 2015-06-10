@@ -6,6 +6,7 @@
             <file>file:/var/www/html/Parser-intgration/application/config/autoload.php</file>
             <file>file:/var/www/html/Parser-intgration/application/controllers/Admin.php</file>
             <file>file:/var/www/html/Parser-intgration/application/controllers/User.php</file>
+            <file>file:/var/www/html/Parser-intgration/application/controllers/Search.php</file>
         </group>
     </open-files>
 </project-private>

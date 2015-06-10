@@ -388,13 +388,6 @@ class Search extends CI_Controller
 
         $result['items'] = $this->Home_model->AdvancedSearchModel($sql);
         echo json_encode($result);
-        // Build our view's data object
-//        $data = array('response' => $result);
-
-        // Load the JSON view
-//        $this->load->view('advencedsearch', $data);
-
-
     }
 
 
