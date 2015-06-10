@@ -6,7 +6,7 @@
 <div id="contact" class="span6">
 <div class="container ">
      <!--Title Page--> 
-    <div class="row" id="login" > 
+     <div class="row" id="login"  > 
         <div class="span6">
             <div class="">
                 <h1 class="span6">Log in</h1>
@@ -63,6 +63,14 @@
 </div>
     <!-- End Login Form -->
 
-    
+    <div class="row" style="height: 700px;"> 
+        <div class="span9">
+            <div class="">
+                <h1 class="span9"></h1>
+                <h6 class="span9"></h6>
+                
+            </div>
+        </div>
+    </div>  
     
 

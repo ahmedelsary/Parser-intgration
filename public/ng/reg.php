@@ -4,9 +4,9 @@
     {{ message }}
 </div>
 <div id="contact" class="span6">
-<div class="container " >
+    <div class="container ">
      <!--Title Page--> 
-    <div class="row">
+     <div class="row" >
         <div class="span6">
             <div class=" span3">
                 <h1 class="">Sign up</h1>
@@ -18,7 +18,7 @@
 
 
      <!--Reg Form--> 
-     <div class="row" >
+     <div class="row">
     	<div class="span6">
         <!-- hello -->
 
@@ -73,3 +73,13 @@
 
     
     
+
+    <div class="row" style="height: 700px;"> 
+        <div class="span9">
+            <div class="">
+                <h1 class="span9"></h1>
+                <h6 class="span9"></h6>
+                
+            </div>
+        </div>
+    </div>  

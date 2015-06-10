@@ -31,6 +31,13 @@
 <link href="<?php echo base_url(); ?>public/ng/css/animate.css" rel="stylesheet" />
 
 
+
+<link href="<?php echo base_url(); ?>public/ng/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>public/ng/css/bootstrap-theme.css" rel="stylesheet">
+ <link href="<?php echo base_url(); ?>public/ng/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+
+
 <!-- Supersized -->
 <link href="<?php echo base_url(); ?>public/ng/css/supersized.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>public/ng/css/supersized.shutter.css" rel="stylesheet">
@@ -73,6 +80,10 @@
 <link rel="apple-touch-icon" sizes="72x72" href="#">
 <link rel="apple-touch-icon" sizes="144x144" href="#">
 
+<!-- pop up -->
+<link href="<?php echo base_url(); ?>public/ng/css/basicPopup.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url(); ?>public/ng/css/basicPopupDefault.css" rel="stylesheet" type="text/css">
+
 <!-- Modernizr -->
 <script src="<?php echo base_url(); ?>public/ng/js/modernizr.js"></script>
 
@@ -106,7 +117,7 @@
 <!-- End of Splash Screen -->
 
 <!-- Homepage Slider -->
-<div id="home-slider" style="height: 670px;">	
+<div id="home-slider" style="height: 630px;">	
     <div class="overlay"></div>
 
     <div class="slider-text">
@@ -126,7 +137,7 @@
 
 
 <!-- Header -->
-<header style="margin-bottom: 50px;">
+<header style="margin-bottom: 0px;">
     <div class="sticky-nav">
     	<a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
         
@@ -151,27 +162,30 @@
             </ul>
         </nav>
         
-    </div>
+    </div
 </header>
 <!-- End Header -->
 
 
 
 
-<div ng-view ></div>
+<div ng-view style="background-color: #2f3239;padding-top: 90px;"></div>
 
 
 <!-- Footer -->
-<div style="margin-top:550px; margin-bottom: 0px;" class="footer">
-    <footer class="navbar footer" style="margin-bottom: 0px;">
+<div style=" margin-bottom: 0px; " class="footer ">
+
+<!--<div style="margin-top:550px; margin-bottom: 0px;" class="footer">-->
+    <footer class="navbar footer" style="margin-bottom: 0px; background: #26292E;
+">
     
     
 <!-- Socialize -->
 <div id="social-area">
 	<div class="container">
-    	<div class="row">
+    	<div class="row" style="background: #26292E;">
             <div class="span12">
-                <nav id="social">
+                <nav id="social" style="background: #26292E;">
                     <ul>
                         <li><a href="https://twitter.com" title="Follow Us on Twitter" target="_blank"><span class="fa fa-twitter"></span></a></li>
                         <li><a href="http://dribbble.com" title="Follow Us on Dribbble" target="_blank"><span class="fa fa-dribbble"></span></a></li>
@@ -219,7 +233,20 @@
 <script src="<?php echo base_url(); ?>public/ng/js/app.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>public/ng/js/script.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>public/ng/js/placeholder.js type="text/javascript"></script>
+<!--<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>-->
+<script src="<?php echo base_url(); ?>public/ng/js/jquery.basicPopup.js"></script>
+<!--<script src="<?php echo base_url(); ?>public/ng/js/scripts.js"></script>-->
+<!--<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>-->
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
+
+
+
+
+<!--<script src="<?php echo base_url(); ?>public/ng/js/jquery-1.11.0.min.js" charset="UTF-8"></script>-->
+<script src="<?php echo base_url(); ?>public/ng/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script src="<?php echo base_url(); ?>public/ng/js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 <!-- End Js -->
 

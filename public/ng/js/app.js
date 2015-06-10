@@ -36,6 +36,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'public/ng/contact.php',
         controller: 'contactCtrl'
       }).
+        when('/search', {
+        templateUrl: 'public/ng/search.php',
+        controller: 'searchCtrl'
+      }).
       otherwise({
         redirectTo: '/',
       });
