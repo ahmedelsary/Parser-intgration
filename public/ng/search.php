@@ -67,6 +67,15 @@
             
 
         </div><br/><br/>
+        
+         <div class="form-group styled-select" >
+
+            <select class="styled-select" name="mark" id="mark" >
+                <option value="">Select Car Type</option>
+                <option value="used">Used</option>
+                <option value="new">New</option>
+                 </select>
+        </div> <br/><br/>
 
         <div class="form-group">
 
