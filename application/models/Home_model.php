@@ -83,8 +83,12 @@ class Home_model extends CI_Model{
     }
 
     function SelectModelByMark($prod){
-        $query = $this->db->query("select distinct model from cars where producer = '" . $prod . "'");
+        $query = $this->db->query("select distinct model from cars where producer like '%" . $prod . "%'");
+        
         $result=$query->result_array();
+//        echo '<pre>';
+//        print_r($result);
+//        echo '</pre>';
         return $result;
     }
 

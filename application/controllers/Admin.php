@@ -7,10 +7,10 @@ class Admin extends CI_Controller
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-        if($this->aauth->is_loggedin())
-        {
-            if($this->aauth->is_member('Admin',FALSE))
-            {
+//        if($this->aauth->is_loggedin())
+//        {
+//            if($this->aauth->is_member('Admin',FALSE))
+//            {
                 $fpath = "assets/config/config";
                 $cron = "assets/config/cron";
                 if ($this->input->post('sub')) {
@@ -80,10 +80,10 @@ class Admin extends CI_Controller
                 $result['items'] = $content;
                 echo json_encode($result); 
             }
-        }
+//        }
 
 
-    }
+//    }
 
 }
 

@@ -225,7 +225,7 @@ class Search extends CI_Controller
     function SimpleSearchApi()
     {
         header('Content-Type: application/json');
-        $keyword = $this->input->post('keyword');
+        $keyword = $this->input->get('keyword');
         
         $result = new ArrayObject();
         $result['items'] = $this->Home_model->simpleSearchModel($keyword);
@@ -393,12 +393,18 @@ class Search extends CI_Controller
 
     function  getModels()
     {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        
         $mark = $this->input->get('mark');
-        $result = $this->Home_model->SelectModelByMark($mark);
-        echo '<option value="">Select Model</option>';
-        foreach ($result as $row) {
-            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
-        }
+        $result['items'] = $this->Home_model->SelectModelByMark($mark);
+
+        $result['code'] = 'success';
+        echo json_encode($result);
+//        echo '<option value="">Select Model</option>';
+//        foreach ($result as $row) {
+//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
+//        }
     }
     function SimpleSearchReport()
     {
