@@ -132,7 +132,7 @@
 </div>     
 </div>
                 
-                <div class="row" style="height: 900px;"> 
+                <div class="row"> 
         <div class="span9">
             
            <div class="container">
