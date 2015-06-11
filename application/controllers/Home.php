@@ -255,9 +255,10 @@ class Home extends CI_Controller
             if (count($result) < 1) {
                 break;
             }
-            for ($i = 0; $i <= count($result); $i++) {
+            for ($i = 0; $i < count($result); $i++) {
+                
                 $carUrl = $result[$i]->children(0)->children(0)->children(0)->href;
-                $carType = $result[$i]->children(1)->children(0)->children(0)->children(1)->children(2)->innertext;
+                @$carType = $result[$i]->children(1)->children(0)->children(0)->children(1)->children(2)->innertext;
                 if (isset($carType)) {
                     $carImg = $result[$i]->children(0)->children(0)->children(0)->children(0)->src;
                     $html1 = new simple_html_dom();
@@ -269,7 +270,7 @@ class Home extends CI_Controller
                     $data['date'] = $result1[0]->innertext;
                     $data['year'] = (int)$result1[1]->innertext;
                     $data['km'] = $result1[2]->innertext;
-                    $data['price'] = (int)$result1[4]->innertext;
+                    $data['price'] = (int)strstr(str_replace(",", "", $result1[4]->innertext),' ');
                     $data['producer'] = getMark(trim($producer));
                     $model = strtr($result1[5]->innertext, array($producer => ''));
                     if (trim($model) == '') {

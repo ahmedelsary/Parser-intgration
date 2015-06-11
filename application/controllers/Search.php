@@ -221,18 +221,18 @@ class Search extends CI_Controller
 
     }
 
-
+    //need test
     function SimpleSearchApi()
     {
         header('Content-Type: application/json');
-        $keyword = $this->input->post('keyword');
+        $keyword = $this->input->get('keyword');
         
         $result = new ArrayObject();
         $result['items'] = $this->Home_model->simpleSearchModel($keyword);
         echo json_encode($result);
     }
 
-
+    //need test
     function AdvancedSearchApi()
     {
         $result = new ArrayObject();
@@ -388,24 +388,175 @@ class Search extends CI_Controller
 
         $result['items'] = $this->Home_model->AdvancedSearchModel($sql);
         echo json_encode($result);
-        // Build our view's data object
-//        $data = array('response' => $result);
-
-        // Load the JSON view
-//        $this->load->view('advencedsearch', $data);
-
-
     }
 
 
     function  getModels()
     {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        
         $mark = $this->input->get('mark');
-        $result = $this->Home_model->SelectModelByMark($mark);
-        echo '<option value="">Select Model</option>';
-        foreach ($result as $row) {
-            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
+        $result['items'] = $this->Home_model->SelectModelByMark($mark);
+
+        $result['code'] = 'success';
+        echo json_encode($result);
+//        echo '<option value="">Select Model</option>';
+//        foreach ($result as $row) {
+//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
+//        }
+    }
+    //ma7moud
+    function SimpleSearchReport()
+    {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+//		$this->load->view('simpleSearchReport');
+        if ($this->aauth->is_loggedin())
+        {
+            if ($this->aauth->is_member('Admin',FALSE))
+            {
+                if ($this->input->post('sub')) 
+                {
+                    $type = $this->input->post('type');
+                    if ($type == 'Top')
+                    {
+                        $result['code'] = 'success';    
+                        $result['items'] = $this->Home_model->searchReport();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Dayly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportDayly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Weekly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportWeekly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Monthly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportMonthly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Yearly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportYearly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                  echo json_encode($result);  
+                }
+                
+            }
+               
         }
+    }
+
+    //ma7moud
+    function SimpleSearchReportUser()
+    {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        $result['items'] = $this->Home_model->searchReportForUser();
+        echo json_encode($result);
+//        $data = array('response' => $result);
+//        $this->load->view('SimpleSearchReport_view', $data);
+    }
+    //ma7moud
+    function printpdf()
+    {
+
+
+		if ($this->input->post('pdf')) 
+		{
+			$pdfkeyword = $this->input->post('keyword');
+			$pdfcount   = $this->input->post('count');
+        $this->pdf->AddPage();
+
+        $this->pdf->SetFont('Arial','',12);
+        // Background color
+        $this->pdf->SetFillColor(200,220,255);
+        // Title
+        $this->pdf->Cell(0,6,"WebParser:BE ",0,1,'C',true);
+        // Line break
+        $this->pdf->Ln(4);
+
+
+         $this->pdf->SetFont('Arial','B',15);
+         // Move to the right
+         $this->pdf->Cell(80);
+         // Framed title
+         $this->pdf->Cell(30,10,'Report',1,0,'C');
+         // Line break
+         $this->pdf->Ln(20);
+
+         $this->pdf->SetFont('Arial','B',16);
+
+        for ($i=0;$i< count($pdfkeyword);$i++) {
+
+            $this->pdf->Cell(100, 10, $pdfkeyword[$i], 1, 0, 'C');
+            $this->pdf->Cell(40, 10, $pdfcount[$i], 1, 1, 'C');
+
+
+        }
+
+        // Position at 1.5 cm from bottom
+        $this->pdf->SetY(266);
+        // Arial italic 8
+        $this->pdf->SetFont('Arial','I',8);
+
+        // Text color in gray
+        $this->pdf->SetTextColor(128);
+
+        // Page number
+
+        $this->pdf->Cell(0,10,'Page '.$this->pdf->PageNo(),0,0,'C');
+        $this->pdf->Output();
+
+		}
+
+    }
+    //ma7moud
+    function printcsv(){
+
+
+		if ($this->input->post('csv')) 
+		{
+			
+			$csvkeyword = $this->input->post('keyword');
+			$csvcount   = $this->input->post('count');
+/*var_dump($csvkeyword);
+var_dump($csvcount);
+exit;*/
+$report=array();
+for($i=0;$i<count($csvcount);$i++)
+{
+
+$report[]=array($csvkeyword[$i],$csvcount[$i]);
+
+}
+
+
+        $R=new CI_PHPReport();
+        $R->load(array(
+                'id'=>'report',
+                'data'=>$report
+            )
+        );
+
+        echo $R->render('csv');
+        //exit();
+}
     }
 
 

@@ -7,10 +7,14 @@ we intgrate in 3 functions so far
 	-view in admin panal
 2-simple search api => changes:
 	-added return json_encoding
-=> needs:
-	-search View
+	-added view but not finished # ma7moud
   
 3-advanced search api => changes:
 	-added return json_encoding
-=> needs:
-	-search View
+	- added view but not finished # ma7moud
+4-waiting for reports 
+5-waiting for database
+
+ma7moud => admin dashboard (control parsing script from admin controller
+								most searched reports from search controller 
+									reports genrations to pdf and CSV files from search controller )

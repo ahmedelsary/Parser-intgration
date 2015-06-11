@@ -1,0 +1,15 @@
+we intgrate in 3 functions so far 
+
+1-admin => changes :
+	-added return json_encoding 
+	-added authontication
+=> needs 
+	-view in admin panal
+2-simple search api => changes:
+	-added return json_encoding
+	-added view
+  
+3-advanced search api => changes:
+	-added return json_encoding
+	-added view
+4-waiting for reports 
