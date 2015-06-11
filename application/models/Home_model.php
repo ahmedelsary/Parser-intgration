@@ -99,6 +99,38 @@ class Home_model extends CI_Model{
     function addtestcar($data){
         $this->db->query("INSERT INTO cars VALUES ('','".$data."','','','','','','','','','','','','','','','','','','','','','','','','','','')");
     }
+ function addMostView($mark,$model,$year){
+        $userid=1;
+        $this->db->query("insert into mostview(car,fkuser) values (CONCAT('$mark','-','$model','-','$year'),".$userid.")");
+    }
 
+    function mostViewReport($time){
+        if($time == 0)
+        {
+            $query = $this->db->query("select car , COUNT(*) from mostview group by car ORDER BY COUNT(*) DESc limit 5");
+        }
+    else
+        {
+            $query = $this->db->query("SELECT car , COUNT(*) FROM mostview WHERE date between DATE_SUB(now() ,INTERVAL ".$time." DAY) and now() group by car ORDER BY COUNT(*) DESc limit 5");
+        }
+        $result=$query->result_array();
+        return $result;
+    }
+    function selectUsed()
+    {
+        $query = $this->db->query("select * from cars where type = 'used' ");
+
+        $result=$query->result_array();
+
+        return $result;
+    }
+    function selectNew()
+    {
+        $query = $this->db->query("select * from cars where type = 'new' ");
+
+        $result=$query->result_array();
+
+        return $result;
+    }
 
 }
