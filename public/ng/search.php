@@ -33,7 +33,11 @@
                 <input type="submit" value="search" name="sub" class="submit"  style="height:34px;width:50px;background: #26292E; border-color:#26292E;">
             </div>
             <div class="col-xs-12">
-             <label class="nn">get data from websites now </label> <input type="checkbox" name="now">
+             <label class="nn">get data from web sites now </label> <input type="checkbox" name="now">
+            </div>
+            
+            <div class="col-xs-12">
+             <label class="nn">get fresh data </label> <input type="checkbox" name="now">
             </div>
             
             <div class="col-xs-12">
