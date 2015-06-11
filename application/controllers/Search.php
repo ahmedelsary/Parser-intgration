@@ -402,65 +402,76 @@ class Search extends CI_Controller
     }
     function SimpleSearchReport()
     {
-        $this->load->view('simpleSearchReport');
-        //$this->load->view('SimpleSearchReport_view');
-        if ($this->input->post('sub')) 
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+//		$this->load->view('simpleSearchReport');
+        if ($this->aauth->is_loggedin())
         {
+            if ($this->aauth->is_member('Admin',FALSE))
+            {
+                if ($this->input->post('sub')) 
+                {
                     $type = $this->input->post('type');
-            if ($type == 'Top')
-            {
-                $result = $this->Home_model->searchReport();
-                $data = array('response' => $result);
-                        $this->load->view('SimpleSearchReport_view', $data);
-            }
-            elseif ($type == 'Dayly')
-            {
-                $result = $this->Home_model->searchReportDayly();
-                $data = array('response' => $result);
-                        $this->load->view('SimpleSearchReport_view', $data);
-            }
-            elseif ($type == 'Weekly')
-            {
-                $result = $this->Home_model->searchReportWeekly();
-                $data = array('response' => $result);
-                        $this->load->view('SimpleSearchReport_view', $data);
-            }
-            elseif ($type == 'Monthly')
-            {
-                $result = $this->Home_model->searchReportMonthly();
-                $data = array('response' => $result);
-                        $this->load->view('SimpleSearchReport_view', $data);
-            }
-            elseif ($type == 'Yearly')
-            {
-                $result = $this->Home_model->searchReportYearly();
-                $data = array('response' => $result);
-                        $this->load->view('SimpleSearchReport_view', $data);
+                    if ($type == 'Top')
+                    {
+                        $result['code'] = 'success';    
+                        $result['items'] = $this->Home_model->searchReport();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Dayly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportDayly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Weekly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportWeekly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Monthly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportMonthly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                    elseif ($type == 'Yearly')
+                    {
+                        $result['code'] = 'success';
+                        $result['items'] = $this->Home_model->searchReportYearly();
+//                            $data = array('response' => $result);
+//                            $this->load->view('SimpleSearchReport_view', $data);
+                    }
+                  echo json_encode($result);  
+                }
                 
             }
+               
         }
-        //$result = $this->Home_model->searchReport();
-        //var_dump($result);
-        
     }
 
     function SimpleSearchReportUser()
     {
-        
-        //$this->load->view('SimpleSearchReport_view');
-        $result = $this->Home_model->searchReportForUser();
-        //var_dump($result);
-                $data = array('response' => $result);
-                $this->load->view('SimpleSearchReport_view', $data);
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        $result['items'] = $this->Home_model->searchReportForUser();
+        echo json_encode($result);
+//        $data = array('response' => $result);
+//        $this->load->view('SimpleSearchReport_view', $data);
     }
     function printpdf()
     {
 
 
-        if ($this->input->post('pdf')) 
-        {
-            $pdfkeyword = $this->input->post('keyword');
-            $pdfcount   = $this->input->post('count');
+		if ($this->input->post('pdf')) 
+		{
+			$pdfkeyword = $this->input->post('keyword');
+			$pdfcount   = $this->input->post('count');
         $this->pdf->AddPage();
 
         $this->pdf->SetFont('Arial','',12);
@@ -503,28 +514,27 @@ class Search extends CI_Controller
         $this->pdf->Cell(0,10,'Page '.$this->pdf->PageNo(),0,0,'C');
         $this->pdf->Output();
 
-        }
+		}
 
     }
-
     function printcsv(){
 
 
-        if ($this->input->post('csv')) 
-        {
-            
-            $csvkeyword = $this->input->post('keyword');
-            $csvcount   = $this->input->post('count');
+		if ($this->input->post('csv')) 
+		{
+			
+			$csvkeyword = $this->input->post('keyword');
+			$csvcount   = $this->input->post('count');
 /*var_dump($csvkeyword);
 var_dump($csvcount);
 exit;*/
-        $report=array();
-        for($i=0;$i<count($csvcount);$i++)
-        {   
+$report=array();
+for($i=0;$i<count($csvcount);$i++)
+{
 
-        $report[]=array($csvkeyword[$i],$csvcount[$i]);
+$report[]=array($csvkeyword[$i],$csvcount[$i]);
 
-        }   
+}
 
 
         $R=new CI_PHPReport();
@@ -536,9 +546,8 @@ exit;*/
 
         echo $R->render('csv');
         //exit();
-        }
-        }
-
-
+}
     }
+
+
 }
