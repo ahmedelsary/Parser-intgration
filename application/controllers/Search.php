@@ -273,6 +273,20 @@ class Search extends CI_Controller
                     $sql = $sql . "producer like '%" . $this->input->post('mark') . "%'";
 
                 }
+                if ($this->input->post('type')) {
+
+                    if ($count == 1) {
+                        $sql = $sql . " and ";
+                    }
+
+                    if ($count == 0) {
+                        $sql = $sql . "where ";
+                        $count++;
+                    }
+
+                    $sql = $sql . "type = '" . $this->input->post('type') . "'";
+
+                }
 
 
                 if ($this->input->post('maxcapacity') && $this->input->post('mincapacity')) {
