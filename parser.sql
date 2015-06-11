@@ -27,7 +27,7 @@ CREATE TABLE `aauth_groups` (
   `name` varchar(100) DEFAULT NULL,
   `definition` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `aauth_groups` (
 
 LOCK TABLES `aauth_groups` WRITE;
 /*!40000 ALTER TABLE `aauth_groups` DISABLE KEYS */;
-INSERT INTO `aauth_groups` VALUES (1,'Admin','Super Admin Group'),(2,'Public','Public Access Group'),(3,'Default','Default Access Group'),(4,'Users','This is Users Group');
+INSERT INTO `aauth_groups` VALUES (1,'Admin','Super Admin Group'),(2,'Public','Public Access Group'),(3,'Default','Default Access Group');
 /*!40000 ALTER TABLE `aauth_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,6 @@ CREATE TABLE `aauth_perm_to_group` (
 
 LOCK TABLES `aauth_perm_to_group` WRITE;
 /*!40000 ALTER TABLE `aauth_perm_to_group` DISABLE KEYS */;
-INSERT INTO `aauth_perm_to_group` VALUES (1,1),(2,4);
 /*!40000 ALTER TABLE `aauth_perm_to_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +83,6 @@ CREATE TABLE `aauth_perm_to_user` (
 
 LOCK TABLES `aauth_perm_to_user` WRITE;
 /*!40000 ALTER TABLE `aauth_perm_to_user` DISABLE KEYS */;
-INSERT INTO `aauth_perm_to_user` VALUES (1,5);
 /*!40000 ALTER TABLE `aauth_perm_to_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +98,7 @@ CREATE TABLE `aauth_perms` (
   `name` varchar(100) DEFAULT NULL,
   `definition` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +107,6 @@ CREATE TABLE `aauth_perms` (
 
 LOCK TABLES `aauth_perms` WRITE;
 /*!40000 ALTER TABLE `aauth_perms` DISABLE KEYS */;
-INSERT INTO `aauth_perms` VALUES (1,'Admin','This is Admin permission who has full access '),(2,'User','Normal User Permission ');
 /*!40000 ALTER TABLE `aauth_perms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,8 +247,36 @@ CREATE TABLE `aauth_users` (
 
 LOCK TABLES `aauth_users` WRITE;
 /*!40000 ALTER TABLE `aauth_users` DISABLE KEYS */;
-INSERT INTO `aauth_users` VALUES (5,'admin@admin.com','2b5a7142e2014cb591dda3b37af411bfa6d2ac4adc24adacd997a864ee57b6c3','admi',0,'2015-05-24 20:09:29','2015-05-24 20:09:29','2015-05-26 15:00:00',NULL,NULL,NULL,'','127.0.0.1',4,NULL,NULL);
+INSERT INTO `aauth_users` VALUES (5,'admin@admin.com','2b5a7142e2014cb591dda3b37af411bfa6d2ac4adc24adacd997a864ee57b6c3','admin',0,'2015-05-24 20:09:29','2015-05-24 20:09:29','2015-05-24 20:00:00',NULL,NULL,NULL,NULL,'127.0.0.1',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `aauth_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `branches`
+--
+
+DROP TABLE IF EXISTS `branches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `branches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_path` varchar(255) DEFAULT NULL,
+  `country` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `branches`
+--
+
+LOCK TABLES `branches` WRITE;
+/*!40000 ALTER TABLE `branches` DISABLE KEYS */;
+/*!40000 ALTER TABLE `branches` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -265,13 +290,13 @@ CREATE TABLE `cars` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `model` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `producer` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `year` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `price` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `year` int(100) DEFAULT NULL,
+  `price` int(100) DEFAULT NULL,
   `km` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gearbox` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ac` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `power` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ecapacity` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ecapacity` int(100) DEFAULT NULL,
   `glass` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `centerlock` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alarm` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -282,16 +307,16 @@ CREATE TABLE `cars` (
   `abs` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `speed` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gps` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img` mediumtext COLLATE utf8_unicode_ci,
-  `carlink` mediumtext COLLATE utf8_unicode_ci,
-  `ref` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `img` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `carlink` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ref` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `owner` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contact` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `notes` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +325,40 @@ CREATE TABLE `cars` (
 
 LOCK TABLES `cars` WRITE;
 /*!40000 ALTER TABLE `cars` DISABLE KEYS */;
+INSERT INTO `cars` VALUES (1,'Verna','Hyundai',2014,0,'22000 km','Manual',NULL,NULL,1501,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/cc774fe32be73a20ad646e495a97e0fe7a9b6d5f/thumb.jpeg','https://egypt.dubizzle.com/en/cars/hyundai/listing/7-listings-f3d8c90352e35074b281b1c5a2909a14/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'٠١١٥٤٠٠٢٨١٠','كامله فابريقه بره وجوه <br />مودل ٢٠١٤','10 June 2015','used'),(2,'Sienna','Fiat',1987,0,'16000 km','Manual',NULL,NULL,1501,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/e6b8440cac10f6c4f82b7afae1e70381e3ad38bf/thumb.jpeg','https://egypt.dubizzle.com/en/cars/fiat/listing/7-listings-15d585b2e7e15cab8a262cfacbba2bc7/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01206657112','فيات كروما ( موديل 87 ) ( 1600 سي سي ) بحاله جيده','10 June 2015','used'),(3,'Matrix','Hyundai',2010,0,'52000 km','Automatic',NULL,NULL,1501,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/1cd060343bb94610e4c5299c04b4e98d1f4a26cb/thumb.jpeg','https://egypt.dubizzle.com/en/cars/hyundai/listing/7-listings-ba4412cced705954b51ff78fbecd83bb/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01061134400','السيارة ممتازة جدا زيرو بالكامل ممتازة جدا فبريكة بالكامل 52 الف كيلو كاملة اتومتيك البيع لظروف خاصة','10 June 2015','used'),(4,'GLK','Mercedes-Benz',2015,0,'750 km','Automatic',NULL,NULL,1901,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/a7ea9db22443aac4069b75a8fd3cac2e10e540db/thumb.jpeg','https://egypt.dubizzle.com/en/cars/mercedes-benz/listing/7-listings-bd1412dea38e58d6ba1c6112723f4935/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01222823459','السيارة بجواب المرور ولم ترخص','10 June 2015','used'),(5,'Other','Chevrolet',2007,0,'220000 km','Manual',NULL,NULL,2701,NULL,NULL,NULL,NULL,NULL,NULL,'2 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/3c8276e98f1fc541c653e99facf53f6481db65ea/thumb.jpeg','https://egypt.dubizzle.com/en/cars/chevrolet/listing/7-listings-9d407b45116d52b1be5368553df0fb0b/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01224935119','شيفورليه دبابه نص نقل سعه محرك 2800 cc موديل 2007 ماشيه 200000km','10 June 2015','used'),(6,'Soul','Kia',2012,0,'49000 km','Steptronic',NULL,NULL,1501,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/30b5b9faa7addba2483efdd51033e6ec5dadbde4/thumb.jpeg','https://egypt.dubizzle.com/en/cars/kia/listing/7-listings-65000ad10e165fbe835ebc274e50d770/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01000516660','كيا سول 2012 فابريكة بالكامل داخلى وخارجى بدون اى دهانات -كاملة اتوماتيك اعلى فئة لون احمر - فتحة سقف - ايرباج - ABS - EBD - تحكم طارة - بلوتوث موبيل - كاسيت سى دى AUX - USB - t- فوج لايت - فامية مثبوت على الرخصة - فرش لونيين وطابلوة لونيين ( احمر * اسود )- جنوط 18 - اثنين مفتاح ريموت - سنسور بارك - كاميرا خلفية - والمعاينة بالمعادى','10 June 2015','used'),(7,'Lanos 1','Daewoo',1997,0,'140000 km','Manual',NULL,NULL,1401,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/2824789210f533ed7b38e84bc1d1ec68de0235f8/thumb.jpeg','https://egypt.dubizzle.com/en/cars/daewoo/listing/7-listings-e9c96a719dbd5b828b0384afb6310ce5/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01069017015','دايو لانوس موديل 97 استيراد معاقين زيرو بره وجوا ما عدا الجانبين','10 June 2015','used'),(8,'3008','Peugeot',2011,0,'64000 km','Automatic',NULL,NULL,1601,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/6e920952bf5873c5e9e3e52b470a49eb58092f5f/thumb.jpeg','https://egypt.dubizzle.com/en/cars/peugeot/listing/7-listings-26f71b28e13b5f349ee92200afbf6115/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01222407007 ...01006665222','الحالة فوق الممتاز استعمل بيتى<br />بيجو 3008 بحالة الجديدة فءة تانيه','10 June 2015','used'),(9,'Jetta','Volkswagen',2012,0,'49000 km','Automatic',NULL,NULL,1401,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/a8316932baa7b3458fdad3ba1b3d070d766d7f2d/thumb.jpeg','https://egypt.dubizzle.com/en/cars/volkswagen/listing/7-listings-8c9a54c32f735197bcc5ba3868d38019/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01129250623','فابريكا بالكامل الفءة التانية موكا صيانات توكيل رخصة ممتدة باسم الماللك حالة ممتازة مع امكتمية تقسيط النصف من خلاتل كونتاكت كارز','10 June 2015','used'),(10,'Elantra','Hyundai',2012,0,'43 km','Automatic',NULL,NULL,1501,NULL,NULL,NULL,NULL,NULL,NULL,'4 door',NULL,NULL,NULL,'https://e0415552026373f497aa-79445249ccb41a60f7b99c8ef6df8604.ssl.cf3.rackcdn.com/7/2015/6/10/f98240985d2437cd7ccfec3947fdb2b7b8aa2d14/thumb.jpeg','https://egypt.dubizzle.com/en/cars/hyundai/listing/7-listings-89f3a6ba656c55a2b6ac671e28612a9e/show/?back=L2VuL2NhcnMvc2VhcmNoLz9pc19zZWFyY2g9RmFsc2UmcGFnZT0xJnBhZ2VzPTA=','https://egypt.dubizzle.com',NULL,'01227460800','هيونداى النترا - موديل / 2012 - هاى لاين - عداد / 43000كم - كامله فتحه سقف - جنوط سبور - مفتاح بصمه - طاره مالتى فانكشن - cruise contorl - start enging - ايرباج - ABS - EBD - AUX - USB - فوج لايت - سينسور خلفى - فرش جلد -اشارات مرايات - السيارات فابريقه بالكامل بحاله الزيرو لا تحتاج مصاريف نهائياا.','10 June 2015','used');
 /*!40000 ALTER TABLE `cars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contacts`
+--
+
+DROP TABLE IF EXISTS `contacts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `linkedin` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `googleplus` varchar(255) DEFAULT NULL,
+  `dribble` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contacts`
+--
+
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -386,6 +444,33 @@ LOCK TABLES `message` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mostview`
+--
+
+DROP TABLE IF EXISTS `mostview`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mostview` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `car` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `fkuser` int(100) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fkuser` (`fkuser`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mostview`
+--
+
+LOCK TABLES `mostview` WRITE;
+/*!40000 ALTER TABLE `mostview` DISABLE KEYS */;
+INSERT INTO `mostview` VALUES (1,'Hyundai-Verna-2014',1,'2015-06-11 10:08:02'),(2,'Hyundai-Verna-2014',1,'2015-06-11 10:55:03'),(3,'Hyundai-Matrix-2010',1,'2015-06-11 10:55:06'),(4,'Hyundai-Verna-2014',1,'2015-06-11 10:55:09'),(5,'Kia-Soul-2012',1,'2015-06-11 10:55:12'),(6,'Daewoo-Lanos 1-1997',1,'2015-06-11 10:55:18'),(7,'Volkswagen-Jetta-2012',1,'2015-06-11 10:55:21'),(8,'Daewoo-Lanos 1-1997',1,'2015-06-11 10:55:25'),(9,'Kia-Soul-2012',1,'2015-06-11 10:55:28'),(10,'Volkswagen-Jetta-2012',1,'2015-06-11 10:55:31'),(11,'Hyundai-Verna-2014',1,'2015-06-11 10:55:36');
+/*!40000 ALTER TABLE `mostview` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `news`
 --
 
@@ -399,7 +484,7 @@ CREATE TABLE `news` (
   `description` text NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,6 +498,33 @@ INSERT INTO `news` VALUES (1,'2003-03-16 00:00:00','mycar','cheep car',NULL),(2,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `simsearch`
+--
+
+DROP TABLE IF EXISTS `simsearch`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `simsearch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fkuser` int(11) NOT NULL,
+  `keyword` char(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `serdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fkuser` (`fkuser`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `simsearch`
+--
+
+LOCK TABLES `simsearch` WRITE;
+/*!40000 ALTER TABLE `simsearch` DISABLE KEYS */;
+INSERT INTO `simsearch` VALUES (2,1,'cc','2015-06-08 12:08:30'),(3,1,'bb','2015-06-08 12:09:07'),(4,1,'cc','2015-06-08 12:09:23'),(5,1,'cc','2015-06-08 12:09:34'),(6,1,'vv','2015-06-08 12:09:39'),(7,1,'aa','2015-06-08 12:09:44'),(8,1,'bb','2015-06-08 12:09:50'),(9,1,'cc','2015-06-08 12:09:53'),(10,1,'dd','2015-06-08 12:09:58'),(11,1,'ff','2015-06-08 12:16:03'),(12,1,'ereny','2015-06-08 22:00:19'),(13,1,'mero','2015-06-08 22:00:26'),(14,1,'3fret','2015-06-08 22:06:03'),(15,1,'3fret','2015-06-08 22:06:22'),(16,1,'3fret','2015-06-08 22:06:43'),(17,2,'ereny','2015-06-08 22:16:36'),(18,2,'aa','2015-06-08 22:16:43'),(19,2,'bb','2015-06-08 22:16:47'),(20,2,'hh','2015-06-08 22:16:53'),(21,2,'xx','2015-06-08 22:16:57'),(22,2,'vv','2015-06-08 22:17:03'),(23,2,'salah','2015-06-09 08:08:22'),(24,2,'salah','2015-06-09 08:08:37'),(25,2,'salah','2015-06-09 08:08:50'),(26,2,'mariem','2015-06-09 08:54:46'),(27,2,'mariem','2015-06-09 08:55:14'),(28,2,'mariem','2015-06-09 08:55:28'),(29,2,'mahmoud','2015-06-09 13:25:13'),(30,2,'mahmoud','2015-06-09 13:25:34'),(31,2,'mahmoud','2015-06-09 13:25:59'),(32,2,'salah','2015-06-09 13:52:09'),(33,2,'A','2015-06-10 10:23:40'),(34,2,'A','2015-06-10 10:23:56'),(35,2,'A','2015-06-10 10:27:57'),(36,2,'A','2015-06-10 10:35:50'),(37,2,'A','2015-06-10 10:40:22'),(38,2,'A','2015-06-10 10:41:55'),(39,2,'A','2015-06-10 10:42:52'),(40,2,'A','2015-06-10 10:49:58'),(41,2,'b','2015-06-10 10:50:45'),(42,2,'A','2015-06-10 10:52:13'),(43,2,'A','2015-06-10 10:55:48'),(44,2,'b','2015-06-10 10:56:09'),(45,2,'f','2015-06-10 11:23:39'),(46,2,'A','2015-06-10 11:23:46'),(47,2,'A','2015-06-11 09:51:09'),(48,2,'A','2015-06-11 09:52:37'),(49,2,'A','2015-06-11 09:56:01');
+/*!40000 ALTER TABLE `simsearch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ticket`
 --
 
@@ -422,6 +534,7 @@ DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` varchar(20) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -496,4 +609,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-08 15:17:01
+-- Dump completed on 2015-06-11 16:53:33
