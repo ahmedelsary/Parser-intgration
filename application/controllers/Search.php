@@ -221,7 +221,7 @@ class Search extends CI_Controller
 
     }
 
-
+    //need test
     function SimpleSearchApi()
     {
         header('Content-Type: application/json');
@@ -232,7 +232,7 @@ class Search extends CI_Controller
         echo json_encode($result);
     }
 
-
+    //need test
     function AdvancedSearchApi()
     {
         $result = new ArrayObject();
@@ -406,6 +406,7 @@ class Search extends CI_Controller
 //            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
 //        }
     }
+    //ma7moud
     function SimpleSearchReport()
     {
         $result = new ArrayObject();
@@ -461,6 +462,7 @@ class Search extends CI_Controller
         }
     }
 
+    //ma7moud
     function SimpleSearchReportUser()
     {
         $result = new ArrayObject();
@@ -470,6 +472,7 @@ class Search extends CI_Controller
 //        $data = array('response' => $result);
 //        $this->load->view('SimpleSearchReport_view', $data);
     }
+    //ma7moud
     function printpdf()
     {
 
@@ -523,6 +526,7 @@ class Search extends CI_Controller
 		}
 
     }
+    //ma7moud
     function printcsv(){
 
 
