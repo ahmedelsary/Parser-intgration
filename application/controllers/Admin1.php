@@ -61,11 +61,11 @@ class Admin1 extends CI_Controller
 //                    }
 
                     echo exec('crontab -r');
-                    exec("pkill -f /var/www/html/parser/index.php");
+                    exec("pkill -f ".base_url()."index.php");
                     write_file($cron, '', 'w+');
 
                     if ($cr) {
-                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php /var/www/html/parser/index.php Home";
+                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php ".base_url()."index.php Home";
                         $output = shell_exec('crontab -l');
                         file_put_contents($cron, $output . $parse . PHP_EOL);
                         echo exec("crontab $cron");

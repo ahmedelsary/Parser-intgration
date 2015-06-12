@@ -4,12 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller
 {
 
-    private $counts = 1;
-
 
     public function index()
     {
-//        set_time_limit(10);
 
         $fpath = "assets/config/config";
         $con = file_get_contents($fpath);
@@ -21,9 +18,6 @@ class Home extends CI_Controller
         if ($content[1] == '1') {
             Home::car100100_new();
             Home::car100100_used();
-
-
-
 
         }
         if ($content[2] == '1') {
@@ -40,9 +34,9 @@ class Home extends CI_Controller
     }
 
 
-    public function car100100_new()
-    {
-        $car_data = array();
+    public function car100100_new($cache=1,$keyword='',$arrLeng=1000) {
+        $arr=array();
+        $data = array();
         $html = new simple_html_dom();
         $html->load_file('http://www.car100100.com/new_cars_prices_Egypt');
         $result = $html->find('table');
@@ -57,42 +51,54 @@ class Home extends CI_Controller
                 $html3->load_file($result2[$j]->children(0)->children(0)->children(0)->href);
                 $result3 = $html3->find('div.used-car-details-list table tr td[2]');
                 $result4 = $html3->find('div.used-car-images-list div img');
-                $car_data['producer'] = getMark(trim($result3[0]->innertext));
-                if ($car_data['producer'] != 'Bikes') {
-                    $car_data['model'] = getModel(trim($result3[1]->innertext));
+                $data['producer'] = getMark(trim($result3[0]->innertext));
+                if ($data['producer'] != 'Bikes') {
+                    $data['model'] = getModel(trim($result3[1]->innertext));
 
-                    $car_data['year'] = (int)$result3[2]->innertext;
-                    $car_data['price'] = (int)$result3[3]->innertext;
-                    $car_data['ecapacity'] = (int)$result3[4]->innertext;
-                    $car_data['gearbox'] = $result3[5]->innertext;
-                    $car_data['ac'] = $result3[14]->innertext;
-                    $car_data['power'] = $result3[13]->innertext;
-                    $car_data['glass'] = $result3[15]->innertext;
-                    $car_data['centerlock'] = $result3[16]->innertext;
-                    $car_data['floor'] = $result3[20]->innertext;
-                    $car_data['emirror'] = $result3[17]->innertext;
-                    $car_data['bags'] = $result3[9]->innertext;
-                    $car_data['abs'] = $result3[8]->innertext;
-                    $car_data['gps'] = $result3[21]->innertext;
-                    $car_data['img'] = $result4[0]->src;
-                    $car_data['type'] = 'new';
-                    $car_data['carlink'] = $result2[$j]->children(0)->children(0)->children(0)->href;
-                    $car_data['ref'] = 'www.car100100.com';
-                    $this->Home_model->addNewCar($car_data);
+                    $data['year'] = (int)$result3[2]->innertext;
+                    $data['price'] = (int)$result3[3]->innertext;
+                    $data['ecapacity'] = (int)$result3[4]->innertext;
+                    $data['gearbox'] = $result3[5]->innertext;
+                    $data['ac'] = $result3[14]->innertext;
+                    $data['power'] = $result3[13]->innertext;
+                    $data['glass'] = $result3[15]->innertext;
+                    $data['centerlock'] = $result3[16]->innertext;
+                    $data['floor'] = $result3[20]->innertext;
+                    $data['emirror'] = $result3[17]->innertext;
+                    $data['bags'] = $result3[9]->innertext;
+                    $data['abs'] = $result3[8]->innertext;
+                    $data['gps'] = $result3[21]->innertext;
+                    $data['img'] = $result4[0]->src;
+                    $data['type'] = 'new';
+                    $data['carlink'] = $result2[$j]->children(0)->children(0)->children(0)->href;
+                    $data['ref'] = 'www.car100100.com';
+                    if($cache){
+                        $this->Home_model->addNewCar($data);
+                    }
+                    else{
+                        if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
+                            if(count($arr) <= $arrLeng ){
+                                $arr[]= $data;
+
+                            }else{
+                                return $arr;
+                            }
+                        }
+                    }
                 }
-
-
             }
         }
+
     }
 
-    public function car100100_used()
+    public function car100100_used($cache=1,$keyword='',$arrLeng=1000)
     {
+        $arr=array();
         $html5 = new simple_html_dom();
         $html5->load_file('http://www.car100100.com/used_cars_prices_Egypt');
         $result5 = $html5->find('table');
         for ($q = 1; $q < count($result5); $q++) {
-            $car_data_u = array();
+            $data = array();
             $html6 = new simple_html_dom();
             $html6->load_file('http://www.car100100.com/' . $result5[$q]->children(0)->children(0)->children(0)->href);
             $result6 = $html6->find('div.pageNumberCell');
@@ -105,40 +111,53 @@ class Home extends CI_Controller
                     $html8->load_file($result7[$r]->href);
                     $result8 = $html8->find('div.used-car-details-list table tr td[2]');
                     $result9 = $html8->find('div.used-car-images-list div a img');
-                    $car_data_u['producer'] = getMark(trim($result8[2]->innertext));
-                    if ($car_data_u['producer'] != 'موتوسيكلات') {
-                        $car_data_u['model'] = getModel(trim($result8[3]->innertext));
-                        $car_data_u['year'] = (int)$result8[4]->innertext;
-                        $car_data_u['owner'] = $result8[0]->innertext;
-                        $car_data_u['contact'] = $result8[1]->innertext;
-                        $car_data_u['date'] = $result8[7]->innertext;
-                        $car_data_u['km'] = $result8[10]->innertext;
-                        $car_data_u['gearbox'] = $result8[11]->innertext;
-                        $car_data_u['alarm'] = $result8[18]->innertext;
-                        $car_data_u['notes'] = $result8[20]->innertext;
-                        $car_data_u['price'] = (int)$result8[6]->innertext;
-                        $car_data_u['ac'] = $result8[12]->innertext;
-                        $car_data_u['power'] = $result8[13]->innertext;
-                        $car_data_u['ecapacity'] = (int)$result8[8]->innertext;
-                        $car_data_u['glass'] = $result8[15]->innertext;
-                        $car_data_u['centerlock'] = $result8[17]->innertext;
-                        $car_data_u['floor'] = $result8[19]->innertext;
-                        $car_data_u['emirror'] = $result8[14]->innertext;
-                        $car_data_u['img'] = $result9[0]->src;
-                        $car_data_u['type'] = 'used';
-                        $car_data_u['carlink'] = $result7[$r]->href;
-                        $car_data_u['ref'] = 'www.car100100.com';
-                        $this->Home_model->addNewCar($car_data_u);
-                    }
+                    $data['producer'] = getMark(trim($result8[2]->innertext));
+                    if ($data['producer'] != 'موتوسيكلات') {
+                        $data['model'] = getModel(trim($result8[3]->innertext));
+                        $data['year'] = (int)$result8[4]->innertext;
+                        $data['owner'] = $result8[0]->innertext;
+                        $data['contact'] = $result8[1]->innertext;
+                        $data['date'] = $result8[7]->innertext;
+                        $data['km'] = $result8[10]->innertext;
+                        $data['gearbox'] = $result8[11]->innertext;
+                        $data['alarm'] = $result8[18]->innertext;
+                        $data['notes'] = $result8[20]->innertext;
+                        $data['price'] = (int)$result8[6]->innertext;
+                        $data['ac'] = $result8[12]->innertext;
+                        $data['power'] = $result8[13]->innertext;
+                        $data['ecapacity'] = (int)$result8[8]->innertext;
+                        $data['glass'] = $result8[15]->innertext;
+                        $data['centerlock'] = $result8[17]->innertext;
+                        $data['floor'] = $result8[19]->innertext;
+                        $data['emirror'] = $result8[14]->innertext;
+                        $data['img'] = $result9[0]->src;
+                        $data['type'] = 'used';
+                        $data['carlink'] = $result7[$r]->href;
+                        $data['ref'] = 'www.car100100.com';
 
+                        if($cache){
+                            $this->Home_model->addNewCar($data);
+                        }
+                        else{
+                            if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
+                                if(count($arr) < $arrLeng ){
+                                    $arr[]= $data;
+
+                                }else{
+                                    return $arr;
+                                }
+                            }
+                        }
+                    }
 
                 }
             }
         }
     }
 
-    public function contactcars_used()
+    public function contactcars_used($cache=1,$keyword='',$arrLeng=1000)
     {
+        $arr=array();
         $html = new simple_html_dom ();
         $html->load_file('http://www.contactcars.com/usedcars/makes');
         $result = $html->find('.list_2 a');
@@ -189,13 +208,27 @@ class Home extends CI_Controller
                 $data['carlink'] = $carUrl;
                 $data['ref'] = "http://www.contactcars.com";
                 $data['owner'] = $result25 [0]->innertext;
-                $this->Home_model->addNewCar($data);
+
+                if($cache){
+                    $this->Home_model->addNewCar($data);
+                }
+                else{
+                    if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
+                        if(count($arr) < $arrLeng ){
+                            $arr[]= $data;
+
+                        }else{
+                            return $arr;
+                        }
+                    }
+                }
             }
         }
     }
 
-    public function contactcars_new()
+    public function contactcars_new($cache=1,$keyword='',$arrLeng=1000)
     {
+        $arr=array();
         $html = new simple_html_dom ();
         $html->load_file('http://www.contactcars.com/newcars/makes');
         $result = $html->find('.list_2 a');
@@ -239,14 +272,27 @@ class Home extends CI_Controller
                     $data['type'] = "new";
                     $data['carlink'] = $carUrl;
                     $data['ref'] = "http://www.contactcars.com";
-                    $this->Home_model->addNewCar($data);
+                    if($cache){
+                        $this->Home_model->addNewCar($data);
+                    }
+                    else{
+                        if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
+                            if(count($arr) < $arrLeng ){
+                                $arr[]= $data;
+
+                            }else{
+                                return $arr;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
-    public function dubizzle()
+    public function dubizzle($cache=1,$keyword='',$arrLeng=1000)
     {
+        $arr=array();
         $html = new simple_html_dom();
         $page = 0;
         while (true) {
@@ -256,21 +302,20 @@ class Home extends CI_Controller
                 break;
             }
             for ($i = 0; $i < count($result); $i++) {
-                
                 $carUrl = $result[$i]->children(0)->children(0)->children(0)->href;
                 @$carType = $result[$i]->children(1)->children(0)->children(0)->children(1)->children(2)->innertext;
-                if (isset($carType)) {
+                if ($carType) {
                     $carImg = $result[$i]->children(0)->children(0)->children(0)->children(0)->src;
                     $html1 = new simple_html_dom();
                     $html1->load_file("https://egypt.dubizzle.com.$carUrl");
-                    $result1 = $html1->find('.u-ml__val');
                     $producer = $html1->find('.u-breadcrumb')[0]->children(2)->children(0)->innertext;
                     $contact = $html1->find('.contact-number')[0]->innertext;
                     $notes = $html1->find('.d-details__description-head')[0]->nextSibling()->innertext;
+                    $result1 = $html1->find('.u-ml__val');
                     $data['date'] = $result1[0]->innertext;
                     $data['year'] = (int)$result1[1]->innertext;
                     $data['km'] = $result1[2]->innertext;
-                    $data['price'] = (int)strstr(str_replace(",", "", $result1[4]->innertext),' ');
+                    $data['price'] = (int)strstr(str_replace(",", "",$result1[4]->innertext),' ');
                     $data['producer'] = getMark(trim($producer));
                     $model = strtr($result1[5]->innertext, array($producer => ''));
                     if (trim($model) == '') {
@@ -286,11 +331,22 @@ class Home extends CI_Controller
                     $data['img'] = $carImg;
                     $data['contact'] = $contact;
                     $data['notes'] = $notes;
-                    $this->Home_model->addNewCar($data);
+                    if($cache){
+                        $this->Home_model->addNewCar($data);
+                    }
+                    else{
+                        if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
+                            if(count($arr) < $arrLeng ){
+                                $arr[]= $data;
+
+                            }else{
+                                return $arr;
+                            }
+                        }
+                    }
                 }
             }
             $page++;
         }
     }
 }
-
