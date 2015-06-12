@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Admin1 extends CI_Controller
 {
     public function index()
     {
@@ -13,7 +13,10 @@ class Admin extends CI_Controller
 //            {
                 $fpath = "assets/config/config";
                 $cron = "assets/config/cron";
-                if ($this->input->post('sub')) {
+                if ($this->input->post()) {
+                    
+                    $result['posss'] = "test";
+                    
                     $minute = $this->input->post('minute');
                     $hour = $this->input->post('hour');
                     $day = $this->input->post('day');
@@ -41,21 +44,21 @@ class Admin extends CI_Controller
                     }
 
 
-                    if ($minute=='-1') {
-                        $minute = '*';
-                    }
-                    if ($hour=='-1') {
-                        $hour = '*';
-                    }
-                    if ($day=='-1') {
-                        $day = '*';
-                    }
-                    if ($month=='-1') {
-                        $month = '*';
-                    }
-                    if ($day_of_week=='-1') {
-                        $day_of_week = '*';
-                    }
+//                    if ($minute=='-1') {
+//                        $minute = '*';
+//                    }
+//                    if ($hour=='-1') {
+//                        $hour = '*';
+//                    }
+//                    if ($day=='-1') {
+//                        $day = '*';
+//                    }
+//                    if ($month=='-1') {
+//                        $month = '*';
+//                    }
+//                    if ($day_of_week=='-1') {
+//                        $day_of_week = '*';
+//                    }
 
                     echo exec('crontab -r');
                     exec("pkill -f /var/www/html/parser/index.php");
@@ -78,6 +81,7 @@ class Admin extends CI_Controller
                 $con = file_get_contents($fpath);
                 $content = explode("\n", $con);
                 $result['items'] = $content;
+                $result['post'] = $this->input->post();
                 echo json_encode($result); 
             }
 //        }
