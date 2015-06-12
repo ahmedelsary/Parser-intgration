@@ -273,6 +273,20 @@ class Search extends CI_Controller
                     $sql = $sql . "producer like '%" . $this->input->post('mark') . "%'";
 
                 }
+                if ($this->input->post('type')) {
+
+                    if ($count == 1) {
+                        $sql = $sql . " and ";
+                    }
+
+                    if ($count == 0) {
+                        $sql = $sql . "where ";
+                        $count++;
+                    }
+
+                    $sql = $sql . "type = '" . $this->input->post('type') . "'";
+
+                }
 
 
                 if ($this->input->post('maxcapacity') && $this->input->post('mincapacity')) {
@@ -558,6 +572,42 @@ $report[]=array($csvkeyword[$i],$csvcount[$i]);
         //exit();
 }
     }
+    
+    // ma7moud
+      function MostViewReport()
+	{
+          $result = new ArrayObject();
+        header('Content-Type: application/json');
+        if ($this->input->post('sub')) 
+        {
+                $type = $this->input->post('type');
+                $time=0;
+                if ($type == 'Top')
+                {
+                    $time=0;
+                }
+                elseif ($type == 'Dayly')
+                {
+                    $time=1;
+                }
+                elseif ($type == 'Weekly')
+                {
+                    $time=7;
+                }
+                elseif ($type == 'Monthly')
+                {
+                    $time=30;
+                }
+                elseif ($type == 'Yearly')
+                {
+                    $time=365;
 
-
+                }
+                $result['items'] = $this->Home_model->mostViewReport($time);
+                echo json_encode($result);
+//                $data = array('response' => $result);
+//                $this->load->view('mostView_view', $data);
+        }
+        		
+    }
 }

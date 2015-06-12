@@ -33,7 +33,11 @@
                 <input type="submit" value="search" name="sub" class="submit"  style="height:34px;width:50px;background: #26292E; border-color:#26292E;">
             </div>
             <div class="col-xs-12">
-             <label class="nn">get data from websites now </label> <input type="checkbox" name="now">
+             <label class="nn">get data from web sites now </label> <input type="checkbox" name="now">
+            </div>
+            
+            <div class="col-xs-12">
+             <label class="nn">get fresh data </label> <input type="checkbox" name="now">
             </div>
             
             <div class="col-xs-12">
@@ -67,6 +71,15 @@
             
 
         </div><br/><br/>
+        
+         <div class="form-group styled-select" >
+
+            <select class="styled-select" name="mark" id="mark" >
+                <option value="">Select Car Type</option>
+                <option value="used">Used</option>
+                <option value="new">New</option>
+                 </select>
+        </div> <br/><br/>
 
         <div class="form-group">
 
@@ -123,7 +136,7 @@
 </div>     
 </div>
                 
-                <div class="row" style="height: 900px;"> 
+                <div class="row"> 
         <div class="span9">
             
            <div class="container">
