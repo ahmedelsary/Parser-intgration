@@ -463,7 +463,7 @@ class Search extends Home
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-//		$this->load->view('simpleSearchReport');
+		$this->load->view('simpleSearchReport');
         if ($this->aauth->is_loggedin())
         {
             if ($this->aauth->is_member('Admin',FALSE))

@@ -27,17 +27,17 @@ class Admin1 extends CI_Controller
                     $ccars = $this->input->post('contactcars');
                     $cr = $this->input->post('cron');
 
-                    if ($dub) {
+                    if ($dub == "true") {
                         $dub = 1;
                     } else {
                         $dub = 0;
                     }
-                    if ($car100) {
+                    if ($car100 == "true") {
                         $car100 = 1;
                     } else {
                         $car100 = 0;
                     }
-                    if ($ccars) {
+                    if ($ccars == "true") {
                         $ccars = 1;
                     } else {
                         $ccars = 0;
