@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Search extends CI_Controller
+class Search extends Home
 {
 
     function SimpleSearch(){
@@ -235,7 +235,8 @@ class Search extends CI_Controller
     //need test
     function SimpleSearchApi()
     {
-        header('Content-Type: application/json');
+        $result = new ArrayObject();
+//        header('Content-Type: application/json');
 
         $this->load->view('SimpleSearch_view');
 
