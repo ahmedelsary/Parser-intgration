@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Admin1 extends CI_Controller
 {
     public function index()
     {
@@ -13,7 +13,10 @@ class Admin extends CI_Controller
 //            {
                 $fpath = "assets/config/config";
                 $cron = "assets/config/cron";
-                if ($this->input->post('sub')) {
+                if ($this->input->post()) {
+                    
+                    $result['posss'] = "test";
+                    
                     $minute = $this->input->post('minute');
                     $hour = $this->input->post('hour');
                     $day = $this->input->post('day');
@@ -24,45 +27,45 @@ class Admin extends CI_Controller
                     $ccars = $this->input->post('contactcars');
                     $cr = $this->input->post('cron');
 
-                    if ($dub) {
+                    if ($dub == "true") {
                         $dub = 1;
                     } else {
                         $dub = 0;
                     }
-                    if ($car100) {
+                    if ($car100 == "true") {
                         $car100 = 1;
                     } else {
                         $car100 = 0;
                     }
-                    if ($ccars) {
+                    if ($ccars == "true") {
                         $ccars = 1;
                     } else {
                         $ccars = 0;
                     }
 
 
-                    if ($minute=='-1') {
-                        $minute = '*';
-                    }
-                    if ($hour=='-1') {
-                        $hour = '*';
-                    }
-                    if ($day=='-1') {
-                        $day = '*';
-                    }
-                    if ($month=='-1') {
-                        $month = '*';
-                    }
-                    if ($day_of_week=='-1') {
-                        $day_of_week = '*';
-                    }
+//                    if ($minute=='-1') {
+//                        $minute = '*';
+//                    }
+//                    if ($hour=='-1') {
+//                        $hour = '*';
+//                    }
+//                    if ($day=='-1') {
+//                        $day = '*';
+//                    }
+//                    if ($month=='-1') {
+//                        $month = '*';
+//                    }
+//                    if ($day_of_week=='-1') {
+//                        $day_of_week = '*';
+//                    }
 
                     echo exec('crontab -r');
-                    exec("pkill -f /var/www/html/parser/index.php");
+                    exec("pkill -f ".base_url()."index.php");
                     write_file($cron, '', 'w+');
 
                     if ($cr) {
-                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php /var/www/html/parser/index.php Home";
+                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php ".base_url()."index.php Home";
                         $output = shell_exec('crontab -l');
                         file_put_contents($cron, $output . $parse . PHP_EOL);
                         echo exec("crontab $cron");
@@ -78,6 +81,7 @@ class Admin extends CI_Controller
                 $con = file_get_contents($fpath);
                 $content = explode("\n", $con);
                 $result['items'] = $content;
+                $result['post'] = $this->input->post();
                 echo json_encode($result); 
             }
 //        }

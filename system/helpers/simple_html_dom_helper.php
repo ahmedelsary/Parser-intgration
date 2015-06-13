@@ -43,6 +43,7 @@
  * All of the Defines for the classes below.
  * @author S.C. Chen <me578022@gmail.com>
  */
+
 define('HDOM_TYPE_ELEMENT', 1);
 define('HDOM_TYPE_COMMENT', 2);
 define('HDOM_TYPE_TEXT',	3);
@@ -68,6 +69,20 @@ define('MAX_FILE_SIZE', 600000);
 // -----------------------------------------------------------------------------
 // get html dom from file
 // $maxlen is defined in the code as PHP_STREAM_COPY_ALL which is defined as -1.
+
+
+function file_get_contents_curl($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HEADER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data;
+}
+
+
+
 function file_get_html($url, $use_include_path = false, $context=null, $offset = -1, $maxLen=-1, $lowercase = true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
 {
 	// We DO force the tags to be terminated.
@@ -84,6 +99,11 @@ function file_get_html($url, $use_include_path = false, $context=null, $offset =
 	$dom->load($contents, $lowercase, $stripRN);
 	return $dom;
 }
+
+
+
+
+
 
 // get html dom from string
 function str_get_html($str, $lowercase=true, $forceTagsClosed=true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN=true, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT)
@@ -1094,7 +1114,7 @@ class simple_html_dom
 	function load_file()
 	{
 		$args = func_get_args();
-		$this->load(call_user_func_array('file_get_contents', $args), true);
+		$this->load(call_user_func_array('file_get_contents_curl', $args), true);
 		// Throw an error if we can't properly load the dom.
 		if (($error=error_get_last())!==null) {
 			$this->clear();

@@ -48,6 +48,7 @@
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/userctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/menuctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/newsctrl.js"></script>
+    <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/automatectrl.js"></script>
     
 </head>
 
@@ -116,13 +117,24 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-bookmark fa-fw"></i> Menu<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bookmark fa-fw"></i> News<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#/listnews"><i class="fa fa-bars fa-fw"></i> List News</a>
                                 </li>
                                 <li>
                                     <a href="#/addnews"><i class="fa fa-plus-square fa-fw"></i> Add News</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bookmark fa-fw"></i> Scrapping<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/automate"><i class="fa fa-bars fa-fw"></i> Automate</a>
                                 </li>
                                 
                             </ul>

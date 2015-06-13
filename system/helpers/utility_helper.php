@@ -350,7 +350,6 @@ if (!function_exists('getModel')) {
             return $oldModel;
         }
 
-
     }
 
     if (!function_exists('clean')) {
@@ -364,5 +363,4 @@ if (!function_exists('getModel')) {
 
     }
 
-
-}
+    }

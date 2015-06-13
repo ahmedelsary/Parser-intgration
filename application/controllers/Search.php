@@ -2,16 +2,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Search extends CI_Controller
+class Search extends Home
 {
 
     function SimpleSearch(){
 
         $this->load->view('SimpleSearch_view');
-
-        $this->load->helper(array('form', 'url'));
-
-        $this->load->library('form_validation');
 
 
         $this->form_validation->set_rules('keyword', 'keyword', 'required');
@@ -23,10 +19,25 @@ class Search extends CI_Controller
             } else {
                 $keyword = trim($this->input->post('keyword'), "'");
 
-                $result = $this->Home_model->simpleSearchModel($keyword);
+                $now=$this->input->post('now');
+                if($now){
+
+                    $result[]=parent::car100100_new(0,$keyword,1);
+                    $result[]=parent::car100100_used(0,$keyword,1);
+
+                    $result[]=parent::contactcars_new(0,$keyword,1);
+                    $result[]=parent::contactcars_used(0,$keyword,1);
+
+                    $result[]=parent::dubizzle(0,$keyword,1);
+
+
+                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+
+                }else{
+                    $result = $this->Home_model->simpleSearchModel($keyword);
+                }
 
                 $data = array('response' => $result);
-
 
                 $this->load->view('result_search_view', $data);
 
@@ -224,12 +235,39 @@ class Search extends CI_Controller
     //need test
     function SimpleSearchApi()
     {
-        header('Content-Type: application/json');
-        $keyword = $this->input->get('keyword');
-        
         $result = new ArrayObject();
-        $result['items'] = $this->Home_model->simpleSearchModel($keyword);
-        echo json_encode($result);
+//        header('Content-Type: application/json');
+
+        $this->load->view('SimpleSearch_view');
+
+        $this->form_validation->set_rules('keyword', 'keyword', 'required');
+
+        if ($this->input->post('sub')) {
+
+            if ($this->form_validation->run() == FALSE) {
+                echo 'please enter a value';
+            } else {
+                $keyword = trim($this->input->post('keyword'), "'");
+
+                $now = $this->input->post('now');
+                if ($now) {
+
+                    $result[] = parent::car100100_new(0, $keyword, 10);
+                    $result[] = parent::car100100_used(0, $keyword, 10);
+                    $result[] = parent::contactcars_new(0, $keyword, 10);
+                    $result[] = parent::contactcars_used(0, $keyword, 10);
+                    $result[] = parent::dubizzle(0, $keyword, 10);
+
+
+                    $result['items'] = array_merge($result[0], $result[1], $result[2], $result[3], $result[4]);
+
+                } else {
+                    $result['items'] = $this->Home_model->simpleSearchModel($keyword);
+                }
+
+            }
+        }
+                echo json_encode($result);
     }
 
     //need test
@@ -425,7 +463,7 @@ class Search extends CI_Controller
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-//		$this->load->view('simpleSearchReport');
+		$this->load->view('simpleSearchReport');
         if ($this->aauth->is_loggedin())
         {
             if ($this->aauth->is_member('Admin',FALSE))
