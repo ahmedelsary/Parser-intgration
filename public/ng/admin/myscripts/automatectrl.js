@@ -4,6 +4,38 @@ app.controller('automateCtrl', function($scope, $http,$location) {
     $scope.page_title = 'Automate Scrapping';
     
     
+    
+    getConfig($http,$scope);
+    
+    
+    $scope.updateConfig = function(){
+        $http({
+            method  : 'POST',
+            url     : 'admin1',
+            data    : $.param({
+                    'car100100': $scope.formData.car100100,
+                    'contactcars': $scope.formData.contactcars,
+                    'cron': $scope.formData.cron,
+                    'day': $scope.formData.day,
+                    'day_of_week': $scope.formData.day_of_week,
+                    'dubizzle': $scope.formData.dubizzle,
+                    'hour': $scope.formData.hour,
+                    'minute': $scope.formData.minute,
+                    'month': $scope.formData.month
+                }),  // pass in data as strings
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+           })
+            .success(function(data) {
+                console.log(data);
+                getConfig($http,$scope);
+              $scope.messages = ['Settings Saved'];
+            });
+    };
+    
+
+});
+
+function getConfig($http,$scope){
     $http.get('admin1').success(function(data) {
               
               $scope.formData = [];
@@ -49,22 +81,4 @@ app.controller('automateCtrl', function($scope, $http,$location) {
               }
               
             });
-    
-    
-    
-    $scope.updateConfig = function(){
-        
-        $http({
-            method  : 'POST',
-            url     : 'admin1',
-            data    : $.param($scope.formData),  // pass in data as strings
-            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-           })
-            .success(function(data) {
-                console.log(data);
-              $scope.messages = ['Settings Saved'];
-            });
-    };
-    
-
-});
+}
