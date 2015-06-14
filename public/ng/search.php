@@ -64,15 +64,16 @@
 
         <div class="form-group styled-select" >
 
-            <select class="styled-select" name="mark" id="mark" >
-                <option value="">Select Car Mark</option>
-                 </select>
+            <select class="styled-select" name="mark" ng-model="formData.mark" id="mark" >
+                <option ng-repeat="mark in marks" value="{{mark.producer}}" ng-selected="formData.mark == mark.producer">{{mark.producer}}</option>
+            </select>
         </div> <br/><br/>
         
         <div class="form-group styled-select">
             
-            <select class=" styled-select" name="model" id="model">
-               <option value="">Select Model</option>           
+            <select class=" styled-select" name="model" id="model" ng-model="formData.model">
+                <option ng-repeat="model in models" value="{{model.model}}" ng-selected="formData.model == model.model">{{model.model}}</option>
+           
             </select>
             
 

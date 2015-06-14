@@ -150,9 +150,7 @@
                                 <li>
                                     <a href="#/simplereport"><i class="fa fa-bars fa-fw"></i> Simple Report</a>
                                 </li>
-                                 <li>
-                                    <a href="#/simplereport"><i class="fa fa-bars fa-fw"></i> Most Viewed Report</a>
-                                </li>
+                                
                                 
                             </ul>
                             <!-- /.nav-second-level -->

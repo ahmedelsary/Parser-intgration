@@ -164,7 +164,24 @@ myApp.controller('searchCtrl', function($scope, $http,$location) {
        $scope.cars = null; 
     });
     
+    $http.get('search/getmark').success(function(data){
+
+       $scope.marks = data['items'];
+       $scope.formData.mark = $scope.marks[0].producer;
+    });
+    
+    $scope.$watch('formData.mark',function (){
+        console.log($.param({'mark':$scope.formData.mark}));
+        $http.get('search/getmodels',{params:{'mark':$scope.formData.mark}})
+            .success(function(data) {
+               
+              $scope.models = data['items'];
+              $scope.formData.model = $scope.models[0].model;
+            });
+    });
     $scope.simpleSearch = function(){
+        
+      
         $http({
             method  : 'POST',
             url     : 'search/simplesearch',

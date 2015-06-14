@@ -132,5 +132,14 @@ class Home_model extends CI_Model{
 
         return $result;
     }
+    
+    
+        function AdvancedSearchMark(){
+        $query = $this->db->query("select producer from cars");
+
+        $result=$query->result_array();
+
+        return $result;
+    }
 
 }

@@ -462,21 +462,7 @@ class Search extends CI_Controller
     }
 
 
-    function  getModels()
-    {
-        $result = new ArrayObject();
-        header('Content-Type: application/json');
-        
-        $mark = $this->input->get('mark');
-        $result['items'] = $this->Home_model->SelectModelByMark($mark);
-
-        $result['code'] = 'success';
-        echo json_encode($result);
-//        echo '<option value="">Select Model</option>';
-//        foreach ($result as $row) {
-//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
-//        }
-    }
+   
     //ma7moud
     function SimpleSearchReport()
     {
@@ -693,4 +679,29 @@ class Search extends CI_Controller
         }
         		
     }
+    function getMark(){
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+         $result['items'] = $this->Home_model->AdvancedSearchMark();
+        echo json_encode($result);
+        
+        
+    }
+     function  getModels()
+    {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        $mark = $this->input->get('mark');
+        $result['items'] = $this->Home_model->SelectModelByMark($mark);
+
+        $result['code'] = 'success';
+        $result['get'] = $this->input->get();
+        echo json_encode($result);
+//        echo '<option value="">Select Model</option>';
+//        foreach ($result as $row) {
+//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
+//        }
+    }
+    
 }
