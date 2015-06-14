@@ -6,7 +6,7 @@ class Search extends CI_Controller
 {
     function __construct()
     {
-        __construct();
+       
         $this->load->library('pdf');
         $this->pdf->fontpath='font/';
         
