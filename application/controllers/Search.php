@@ -39,7 +39,8 @@ class Search extends CI_Controller
                     $result[]=  dubizzle(0,$keyword,1);
 
 
-                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+//                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+                    $result=array_merge($result[0]);
 
                 }else{
                     $result = $this->Home_model->simpleSearchModel($keyword);
