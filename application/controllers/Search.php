@@ -6,7 +6,7 @@ class Search extends CI_Controller
 {
     function __construct()
     {
-         Home::__construct();
+        __construct();
         $this->load->library('pdf');
         $this->pdf->fontpath='font/';
         
@@ -30,13 +30,13 @@ class Search extends CI_Controller
                 $now=$this->input->post('now');
                 if($now){
 
-                    $result[]=  Home::car100100_new(0,$keyword,1);
-                    $result[]=  Home::car100100_used(0,$keyword,1);
+                    $result[]=  car100100_new(0,$keyword,1);
+                    $result[]=  car100100_used(0,$keyword,1);
 
-                    $result[]=  Home::contactcars_new(0,$keyword,1);
-                    $result[]=  Home::contactcars_used(0,$keyword,1);
+                    $result[]=  contactcars_new(0,$keyword,1);
+                    $result[]=  contactcars_used(0,$keyword,1);
 
-                    $result[]=  Home::dubizzle(0,$keyword,1);
+                    $result[]=  dubizzle(0,$keyword,1);
 
 
                     $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
@@ -271,11 +271,11 @@ class Search extends CI_Controller
                 $now = $this->input->post('now');
                 if ($now) {
 
-                    $result[] =  Home::car100100_new(0, $keyword, 10);
-                    $result[] =  Home::car100100_used(0, $keyword, 10);
-                    $result[] =  Home::contactcars_new(0, $keyword, 10);
-                    $result[] =  Home::contactcars_used(0, $keyword, 10);
-                    $result[] =  Home::dubizzle(0, $keyword, 10);
+                    $result[] =  car100100_new(0, $keyword, 10);
+                    $result[] =  car100100_used(0, $keyword, 10);
+                    $result[] =  contactcars_new(0, $keyword, 10);
+                    $result[] =  contactcars_used(0, $keyword, 10);
+                    $result[] =  dubizzle(0, $keyword, 10);
 
 
                     $result['items'] = array_merge($result[0], $result[1], $result[2], $result[3], $result[4]);
