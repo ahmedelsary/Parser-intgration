@@ -2,10 +2,16 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Search extends Home
+class Search extends CI_Controller
 {
-
-    function SimpleSearch(){
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library('pdf');
+        $this->pdf->fontpath='font/';
+        
+    }
+     function SimpleSearch(){
 
         $this->load->view('SimpleSearch_view');
 
@@ -463,12 +469,12 @@ class Search extends Home
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-		$this->load->view('simpleSearchReport');
+//		$this->load->view('simpleSearchReport');
         if ($this->aauth->is_loggedin())
         {
             if ($this->aauth->is_member('Admin',FALSE))
             {
-                if ($this->input->post('sub')) 
+                if ($this->input->post()) 
                 {
                     $type = $this->input->post('type');
                     if ($type == 'Top')
@@ -527,12 +533,27 @@ class Search extends Home
     //ma7moud
     function printpdf()
     {
+        
+        
+        if ($this->input->post()) 
+        {
+            
+            
+               // Send Headers
+        header('Content-type: application/pdf');
+        header('Content-Disposition: attachment; filename="myPDF.pdf');
 
+        // Send Headers: Prevent Caching of File
+        header('Cache-Control: private');
+        header('Pragma: private');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
-		if ($this->input->post('pdf')) 
-		{
-			$pdfkeyword = $this->input->post('keyword');
-			$pdfcount   = $this->input->post('count');
+        
+            
+        $pdfkeyword = $this->input->post('keyword');
+        $pdfcount   = $this->input->post('count');
+        $header   = $this->input->post('header');
+        
         $this->pdf->AddPage();
 
         $this->pdf->SetFont('Arial','',12);
@@ -553,15 +574,18 @@ class Search extends Home
          $this->pdf->Ln(20);
 
          $this->pdf->SetFont('Arial','B',16);
-
+         
+         $this->pdf->Cell(100, 10, $header, 1, 0, 'C');
+         $this->pdf->Cell(40, 10, "Count", 1, 1, 'C');
+            
         for ($i=0;$i< count($pdfkeyword);$i++) {
 
             $this->pdf->Cell(100, 10, $pdfkeyword[$i], 1, 0, 'C');
             $this->pdf->Cell(40, 10, $pdfcount[$i], 1, 1, 'C');
-
+            
 
         }
-
+        
         // Position at 1.5 cm from bottom
         $this->pdf->SetY(266);
         // Arial italic 8
@@ -582,33 +606,41 @@ class Search extends Home
     function printcsv(){
 
 
-		if ($this->input->post('csv')) 
+		if ($this->input->post()) 
 		{
+                    
+                    header('Content-type: application/CSV');
+                    header('Content-Disposition: attachment; filename="myCSV.csv');
+
+                    // Send Headers: Prevent Caching of File
+                    header('Cache-Control: private');
+                    header('Pragma: private');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 			
 			$csvkeyword = $this->input->post('keyword');
 			$csvcount   = $this->input->post('count');
-/*var_dump($csvkeyword);
-var_dump($csvcount);
-exit;*/
-$report=array();
-for($i=0;$i<count($csvcount);$i++)
-{
+                        $header   = $this->input->post('header');
 
-$report[]=array($csvkeyword[$i],$csvcount[$i]);
+            $report=array();
+            $report[]=array($header,"Count");
+            for($i=0;$i<count($csvcount);$i++)
+            {
 
-}
+            $report[]=array($csvkeyword[$i],$csvcount[$i]);
+
+            }
 
 
-        $R=new CI_PHPReport();
-        $R->load(array(
-                'id'=>'report',
-                'data'=>$report
-            )
-        );
+                    $R=new CI_PHPReport();
+                    $R->load(array(
+                            'id'=>'report',
+                            'data'=>$report
+                        )
+                    );
 
-        echo $R->render('csv');
-        //exit();
-}
+                    echo $R->render('csv');
+
+        }
     }
     
     // ma7moud
@@ -616,7 +648,7 @@ $report[]=array($csvkeyword[$i],$csvcount[$i]);
 	{
           $result = new ArrayObject();
         header('Content-Type: application/json');
-        if ($this->input->post('sub')) 
+        if ($this->input->post()) 
         {
                 $type = $this->input->post('type');
                 $time=0;
