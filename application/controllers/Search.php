@@ -30,11 +30,11 @@ class Search extends CI_Controller
                 $now=$this->input->post('now');
                 if($now){
 
-                    $result[]=  car100100_new(0,$keyword,1);
-                    $result[]=  car100100_used(0,$keyword,1);
-
-                    $result[]=  contactcars_new(0,$keyword,1);
-                    $result[]=  contactcars_used(0,$keyword,1);
+//                    $result[]=  car100100_new(0,$keyword,1);
+//                    $result[]=  car100100_used(0,$keyword,1);
+//
+//                    $result[]=  contactcars_new(0,$keyword,1);
+//                    $result[]=  contactcars_used(0,$keyword,1);
 
                     $result[]=  dubizzle(0,$keyword,1);
 
