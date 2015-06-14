@@ -6,8 +6,11 @@
             {{page_title}}
             
         </h1>
-        <input type="radio" value="simple" ng-model="type" /> Simple Search Report <br />
-        <input type="radio" value="most" ng-model="type" /> Most Viewed Report <br />
+        <input type="radio" value="simple" ng-model="type" /> Simple Search Report &nbsp;&nbsp;&nbsp;
+        <input type="radio" value="most" ng-model="type" /> Most Viewed Report 
+        <br />
+        <br />
+        <br />
     </div>
     <!-- /.col-lg-12 -->
 </div>

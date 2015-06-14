@@ -13,16 +13,18 @@ class Search extends CI_Controller
     }
      function SimpleSearch(){
 
-        $this->load->view('SimpleSearch_view');
+//        $this->load->view('SimpleSearch_view');
 
 
-        $this->form_validation->set_rules('keyword', 'keyword', 'required');
+//        $this->form_validation->set_rules('keyword', 'keyword', 'required');
+        $response_result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        if ($this->input->post()) {
 
-        if ($this->input->post('sub')) {
-
-            if ($this->form_validation->run() == FALSE) {
-                echo 'please enter a value';
-            } else {
+//            if ($this->form_validation->run() == FALSE) {
+//                echo 'please enter a value';
+//            } else {
                 $keyword = trim($this->input->post('keyword'), "'");
 
                 $now=$this->input->post('now');
@@ -43,11 +45,14 @@ class Search extends CI_Controller
                     $result = $this->Home_model->simpleSearchModel($keyword);
                 }
 
-                $data = array('response' => $result);
+//                $data = array('response' => $result);
+                $response_result['items'] = $result;
+                
+                
+                echo json_encode($response_result);
+//                $this->load->view('result_search_view', $data);
 
-                $this->load->view('result_search_view', $data);
-
-            }
+//            }
 
 
         }
@@ -56,28 +61,32 @@ class Search extends CI_Controller
 
     public function AdvancedSearch()
     {
-        $this->load->view('AdvancedSearch_view');
+//        $this->load->view('AdvancedSearch_view');
 
-        $this->form_validation->set_rules('maxcapacity', 'maxcapacity', 'integer');
-        $this->form_validation->set_rules('mincapacity', 'mincapacity', 'integer');
-        $this->form_validation->set_rules('maxyear', 'maxyear', 'integer');
-        $this->form_validation->set_rules('minyear', 'minyear', 'integer');
-        $this->form_validation->set_rules('maxprice', 'maxprice', 'integer');
-        $this->form_validation->set_rules('minprice', 'minprice', 'integer');
-        if ($this->input->post('sub')) {
-            if ($this->form_validation->run() == FALSE) {
-
-                echo '
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Error</h3>
-                </div>
-                <div class="panel-body">
-                    please enter a valid value!
-                </div>
-			</div>';
-
-            } else {
+//        $this->form_validation->set_rules('maxcapacity', 'maxcapacity', 'integer');
+//        $this->form_validation->set_rules('mincapacity', 'mincapacity', 'integer');
+//        $this->form_validation->set_rules('maxyear', 'maxyear', 'integer');
+//        $this->form_validation->set_rules('minyear', 'minyear', 'integer');
+//        $this->form_validation->set_rules('maxprice', 'maxprice', 'integer');
+//        $this->form_validation->set_rules('minprice', 'minprice', 'integer');
+        
+        $response_result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        if ($this->input->post()) {
+//            if ($this->form_validation->run() == FALSE) {
+//
+//                echo '
+//            <div class="panel panel-danger">
+//                <div class="panel-heading">
+//                    <h3 class="panel-title">Error</h3>
+//                </div>
+//                <div class="panel-body">
+//                    please enter a valid value!
+//                </div>
+//			</div>';
+//
+//            } else {
 
                 $count = 0;
 
@@ -229,11 +238,15 @@ class Search extends CI_Controller
 
                 $result = $this->Home_model->AdvancedSearchModel($sql);
 
-                $data = array('response' => $result);
-                $this->load->view('result_search_view', $data);
+//                $data = array('response' => $result);
+                $response_result['items'] = $result;
+                
+                
+                echo json_encode($response_result);
+//                $this->load->view('result_search_view', $data);
 
 
-            }
+//            }
         }
 
     }

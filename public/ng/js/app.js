@@ -152,3 +152,44 @@ myApp.controller('contactController', function($scope) {
     $scope.pageClass = 'page-contact';
 
 });
+
+
+
+myApp.controller('searchCtrl', function($scope, $http,$location) {
+
+    $scope.searchtype = 'simple';
+    $scope.formData = {};
+    
+    $scope.$watch('searchtype',function (){
+       $scope.cars = null; 
+    });
+    
+    $scope.simpleSearch = function(){
+        $http({
+            method  : 'POST',
+            url     : 'search/simplesearch',
+            data    : $.param($scope.formData),  // pass in data as strings
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+           })
+            .success(function(data) {
+                console.log(data);
+              $scope.cars = data['items'];
+            });
+    };
+    
+    
+    $scope.advSearch = function(){
+        $http({
+            method  : 'POST',
+            url     : 'search/simplesearch',
+            data    : $.param($scope.formData),  // pass in data as strings
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+           })
+            .success(function(data) {
+                console.log(data);
+              $scope.cars = data['items'];
+            });
+    };
+    
+
+});
