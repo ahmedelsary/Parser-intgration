@@ -59,7 +59,8 @@ if (!function_exists('asset_url')) {
 }
 
 
-
+$CI = get_instance();
+$CI->load->model('Home_model');
 
     
 
@@ -104,7 +105,7 @@ function car100100_new($cache=1,$keyword='',$arrLeng=1000) {
                 $data['carlink'] = $result2[$j]->children(0)->children(0)->children(0)->href;
                 $data['ref'] = 'www.car100100.com';
                 if($cache){
-                    $this->Home_model->addNewCar($data);
+                    $GLOBALS['CI']->Home_model->addNewCar($data);
                 }
                 else{
                     if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
@@ -121,8 +122,8 @@ function car100100_new($cache=1,$keyword='',$arrLeng=1000) {
     }
 
 }
-    
-    
+
+
     
     
 function car100100_used($cache=1,$keyword='',$arrLeng=1000)
@@ -170,7 +171,7 @@ function car100100_used($cache=1,$keyword='',$arrLeng=1000)
                         $data['ref'] = 'www.car100100.com';
 
                         if($cache){
-                            $this->Home_model->addNewCar($data);
+                            $GLOBALS['CI']->Home_model->addNewCar($data);
                         }
                         else{
                             if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
@@ -244,7 +245,7 @@ function contactcars_used($cache=1,$keyword='',$arrLeng=1000)
                 $data['owner'] = $result25 [0]->innertext;
 
                 if($cache){
-                    $this->Home_model->addNewCar($data);
+                    $GLOBALS['CI']->Home_model->addNewCar($data);
                 }
                 else{
                     if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
@@ -307,7 +308,7 @@ function contactcars_new($cache=1,$keyword='',$arrLeng=1000)
                     $data['carlink'] = $carUrl;
                     $data['ref'] = "http://www.contactcars.com";
                     if($cache){
-                        $this->Home_model->addNewCar($data);
+                        $GLOBALS['CI']->Home_model->addNewCar($data);
                     }
                     else{
                         if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
@@ -366,7 +367,7 @@ function dubizzle($cache=1,$keyword='',$arrLeng=1000)
                     $data['contact'] = $contact;
                     $data['notes'] = $notes;
                     if($cache){
-                        $this->Home_model->addNewCar($data);
+                        $GLOBALS['CI']->Home_model->addNewCar($data);
                     }
                     else{
                         if((strpos($data['model'],$keyword) !== false) || (strpos($data['producer'],$keyword) !== false)){
