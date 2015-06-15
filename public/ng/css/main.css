@@ -1376,3 +1376,7 @@ footer .credits {
        -o-transition: none;
           transition: none;
 }
+.datetimepicker 
+{
+    color:#000 !important;
+}
