@@ -21,7 +21,9 @@
    border: 1px solid #ccc;
    border-color: #26292E;
    }
-   
+   .table{
+       color: #000;
+   }
 </style>
 <div style="margin-top:50px;">
 <div class="span3" >
@@ -181,8 +183,6 @@
         
          
           
-
-
 
 <!--            <div class="panel panel-danger">
                 <div class="panel-heading">

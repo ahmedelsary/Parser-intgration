@@ -48,7 +48,25 @@ myApp.config(function($routeProvider) {
         redirectTo: '/',
       });
   });
-      
+
+
+
+myApp.controller('newsCtrl', function ($scope,$http){
+    $http.get('news/view').success(function(data) {
+
+              if (data['code'] != 'success') {
+                  $scope.message = "Error";
+              } else {
+                $scope.news = data['items'];
+              }
+            });
+            
+    $scope.displayNews = function (index){
+        $scope.currentNews = $scope.news[index];
+    }
+});
+
+
 myApp.controller('sliderCtrl', function ($scope){
     
 });

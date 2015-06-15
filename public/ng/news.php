@@ -1,5 +1,29 @@
 <!--  News and Events  Section -->
 
+<!-- Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{{currentNews.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <img ng-src="{{currentNews.image}}">
+                <div><h3>{{currentNews.title}}</h3></div>
+                <p>{{currentNews.description}}</p>
+                
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 
 
 
@@ -93,16 +117,33 @@
 </script>
                 </div>
                 <!-- end calender-->
+                
+                {{news}}
             <div class="span9">
             	<div class="row">
                 	<section id="projects">
                     	<ul id="thumbs">
+                            
+                        <!-- Item  and Filter Name -->
+                        <li class="item-thumbs span3 design" ng-repeat="n in news" ng-click="displayNews($index)">
+                                    
+                            	 Fancybox - Gallery Enabled - Title - Full Image 
+                            	<a class="hover-wrap fancybox external btn-open" onclick="showNews()" >
+                                	<span class="overlay-img"></span>
+                                    <span class="overlay-img-thumb fa fa-plus"></span>
+                                </a>
+                                 Thumb Image and Description 
+                               
+                                <img src="public/ng/img/work/thumbs/image-03.jpg"/>
+                        </li>
+                            
+                            
                         
 							<!-- Item  and Filter Name -->
                         	<li class="item-thumbs span3 design">
                                     
                             	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a id="btn-open" class="hover-wrap fancybox external" data-fancybox-group="gallery" title=""
+                            	<a  class="hover-wrap fancybox external btn-open" data-fancybox-group="gallery" title=""
                                    href="#/news">
                                 	<span class="overlay-img"></span>
                                     <span class="overlay-img-thumb fa fa-plus"></span>
@@ -118,7 +159,7 @@
 							<!-- Item and Filter Name -->
                         	<li class="item-thumbs span3 design">
                             	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a  class="hover-wrap fancybox" data-fancybox-group="gallery" title="" 
+                            	<a  class="hover-wrap fancybox btn-open" data-fancybox-group="gallery" title="" 
                                    href="#/news">
                                 	<span class="overlay-img"></span>
                                     <span class="overlay-img-thumb fa fa-plus"></span>
@@ -260,26 +301,16 @@ google_ad_slot = "2780937993";
 google_ad_width = 728;
 google_ad_height = 90;
 //-->
-$(document).ready(function(){
 
 		
-	$('#btn-open').click(function(){	
 
-		$.basicpopup({
-                    
-			content: $('#popup-content').html()
-		});
-		
-	});
 
-});
 </script>
 </div>
 <div id="popup-content" >
-    <img src="public/ng/img/work/thumbs/image-01.jpg" 
-    alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
-    <div><h3>title</h3></div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero velit, dictum eget ligula scelerisque, elementum venenatis purus. Phasellus placerat tempor velit id ultricies. Vivamus sollicitudin, dui non imperdiet maximus, tortor lorem interdum lectus.</p>
+    <img ng-src="{{currentNews.image}}">
+    <div><h3>{{currentNews.title}}</h3></div>
+    <p>{{currentNews.description}}</p>
 </div>
 
 <script type="text/javascript">
@@ -298,4 +329,14 @@ $(document).ready(function(){
 </script>
 
 
+<script>
+    	function showNews(){	
+
+		$.basicpopup({
+                    
+			content: $('#popup-content').html()
+		});
+		
+	}
+    </script>
 
