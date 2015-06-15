@@ -495,6 +495,15 @@ if (!function_exists('getMark')) {
     }
 
 }
+function getProjectName(){
+    require_once('url_helper.php');
+    $url=explode('/',base_url());
+    return $url[3];
+
+
+}
+
+
 
 
 if (!function_exists('getModel')) {
