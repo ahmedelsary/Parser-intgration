@@ -146,6 +146,7 @@
         </div>
         
         <nav id="menu" ng-controller="menuCtrl">
+           
             <ul id="menu-nav">
                 <!--<li><a href="#work">Our Work</a></li>-->
                 <!--<li><a href="#about">About Us</a></li>-->
@@ -159,7 +160,24 @@
                 <li ng-repeat="item in mainMenuItems">
                     <a href="#{{ item.url }}" class="external">{{item.title}}</a>
                 </li>
+            
+                
+                <li ng-hide="user">
+                        <a href="#/login" class="external">Login</a>
+                    </li>
+                    <li ng-hide="user">
+                        <a href="#/reg" class="external">Register</a>
+                    </li>
+                
+                
+                
+                    <li ng-show="user">
+                        <a href="#/logout" class="external">Logout</a>
+                    </li>
+                
             </ul>
+                
+            
         </nav>
         
     </div

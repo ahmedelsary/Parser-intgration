@@ -28,6 +28,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'public/ng/changepass.php',
         controller: 'changepassCtrl'
       }).
+        when('/logout', {
+        templateUrl: 'public/ng/login.php',
+        controller: 'logoutCtrl'
+      }).
         when('/news', {
         templateUrl: 'public/ng/news.php',
         controller: 'newsCtrl'
@@ -77,7 +81,9 @@ myApp.controller('profileCtrl', function ($scope, $http){
     
 });
 
-myApp.controller('loginCtrl', function ($scope, $location, $http){
+myApp.controller('loginCtrl', function ($scope, $location, $http,user,$rootScope){
+    
+    
     $scope.formData = {};
     
     $scope.login = function (){
@@ -95,6 +101,15 @@ myApp.controller('loginCtrl', function ($scope, $location, $http){
                 $scope.message = data.msgs;
               } else {
                 // if successful, bind success message to message
+                user.get(function(data) {
+                  if (data['code'] == 'success') {
+                      $rootScope.user =  data['user'];
+
+                  } else if (data['code'] == 'error'){
+                      $rootScope.user =  null;
+
+                  }
+              });
                 $location.path('/');
               }
             });
@@ -123,7 +138,29 @@ myApp.controller('regCtrl', function ($scope, $http){
     }
 });
 
-myApp.controller('menuCtrl', function ($scope, $http){
+
+myApp.factory('user', function($http){
+    
+   return {
+          get: function(callback){
+            $http.get('user/usersget').success(callback);
+          }
+        }; 
+    
+});
+
+myApp.controller('menuCtrl', function ($scope, $http, user, $rootScope){
+    user.get(function(data) {
+              if (data['code'] == 'success') {
+                  $rootScope.user =  data['user'];
+                  
+              } else if (data['code'] == 'error'){
+                  $rootScope.user =  null;
+                
+              }
+          });
+              
+              
     $http.get('menu/view').success(function (data){
         console.log(data);
         $scope.mainMenuItems = data['items'];
@@ -208,5 +245,27 @@ myApp.controller('searchCtrl', function($scope, $http,$location) {
             });
     };
     
+
+});
+
+
+myApp.controller('logoutCtrl', function($scope,$http,$location,$rootScope) {
+        $http.get('user/logout')
+            .success(function(data) {
+                console.log(data);
+              if (data['code'] == 'loggedout') {
+                 $scope.messages = ['User Loggedout Successfully'];
+                 $scope.$parent.is_loggedin = false;
+                 $rootScope.user = null;
+                 
+                 $location.path('/login');
+                 
+                  
+              } else {
+                $scope.messages = data.msgs;
+                 
+              }
+            });
+
 
 });

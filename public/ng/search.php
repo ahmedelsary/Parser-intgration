@@ -81,8 +81,8 @@
         
          <div class="form-group styled-select" >
 
-            <select class="styled-select" name="mark" id="mark" >
-                <option value="">Select Car Type</option>
+            <select class="styled-select" name="mark" id="mark" ng-model="formData.type" >
+                <option value="" >Select Car Type</option>
                 <option value="used">Used</option>
                 <option value="new">New</option>
                  </select>
@@ -92,14 +92,14 @@
 
             <label class="sr-only" for="minyear">year from</label>
 
-            <input type="text" name="minyear" class="form-control" id="minyear" placeholder="year from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" ng-model="formData.minyear" name="minyear" class="form-control" id="minyear" placeholder="year from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
         <div class="form-group">
 
             <label class="sr-only" for="maxyear">year to</label>
 
-            <input type="text" name="maxyear" class="form-control" id="maxyear" placeholder="year to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" name="maxyear" ng-model="formData.maxyear" class="form-control" id="maxyear" placeholder="year to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
         
@@ -107,14 +107,14 @@
 
             <label class="sr-only" for="minprice">price from</label>
 
-            <input type="text" name="minprice" class="form-control" id="minprice" placeholder="price from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" name="minprice" ng-model="formData.minprice" class="form-control" id="minprice" placeholder="price from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
         <div class="form-group">
 
             <label class="sr-only" for="maxprice">price to</label>
 
-            <input type="text" name="maxprice" class="form-control" id="maxprice" placeholder="price to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" name="maxprice" ng-model="formData.maxprice" class="form-control" id="maxprice" placeholder="price to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
         
@@ -122,14 +122,14 @@
 
             <label class="sr-only" for="mincapacity">capacity from</label>
 
-            <input type="text" name="mincapacity" class="form-control" id="mincapacity" placeholder="capacity from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" name="mincapacity" ng-model="formData.mincapacity" class="form-control" id="mincapacity" placeholder="capacity from" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
         <div class="form-group">
 
-            <label class="sr-only" for="maxcapacity">capacity to</label>
+            <label class="sr-only" for="maxcapacity" >capacity to</label>
 
-            <input type="text" name="maxcapacity" class="form-control" id="maxcapacity" placeholder="capacity to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+            <input type="text" name="maxcapacity" ng-model="formData.maxcapacity" class="form-control" id="maxcapacity" placeholder="capacity to" style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
 
         </div><br/><br/>
 
