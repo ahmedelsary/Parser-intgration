@@ -56,7 +56,7 @@ class Admin1 extends CI_Controller
 
                     if ($cr==1) {
                         $project=getProjectName();
-                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php "."/var/www/html/".$project."/index.php Home";
+                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /etc/alternatives/php "."/var/www/html/".$project."/index.php Home";
                         $output = shell_exec('crontab -l');
                         file_put_contents($cron, $output . $parse . PHP_EOL);
                         echo exec("crontab $cron");
