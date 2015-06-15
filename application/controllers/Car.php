@@ -8,6 +8,11 @@ class Car extends CI_Controller
     function ViewCar()
 	{
 		//$id = 1;
+        
+        
+            $response_result = new ArrayObject();
+            header('Content-Type: application/json');
+        
 		$id = $this->input->get('id');
 		$result = $this->Home_model->viewCar($id);
                 $mark = $result[0]['producer'];
@@ -23,8 +28,10 @@ class Car extends CI_Controller
 		print_r($result);
 		echo  '</pre>';*/
 		//var_dump($result);
-                $data = array('response' => $result);
-                $this->load->view('carView', $data);
+//                $data = array('response' => $result);
+                $response_result['car'] = $result[0];
+                echo json_encode($response_result);
+//                $this->load->view('carView', $data);
 	}
     function viewUsedCar()
     {

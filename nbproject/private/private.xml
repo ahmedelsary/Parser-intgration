@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>public/ng/news.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>305</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/var/www/html/Parser-intgration/application/config/autoload.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/controllers/Admin.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/search.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/controllers/User.php</file>
             <file>file:/var/www/html/Parser-intgration/public/ng/news.php</file>
-=======
-            <file>file:/var/www/html/Parser-intgration/application/controllers/Admin1.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/app.js</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/menuctrl.js</file>
-            <file>file:/var/www/html/Parser-intgration/Intgration-Notes.txt</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/admin/addnews.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/controllers/Home.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/admin/automate.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/automatectrl.js</file>
->>>>>>> d9f72d21b7659d2171d93d02bd249944e287b262
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/newsctrl.js</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/js/app.js</file>
+            <file>file:/var/www/html/Parser-intgration/application/views/base.php</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/js/jquery.basicPopup.js</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/search.php</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/listmenuitems.php</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/js/script.js</file>
         </group>
     </open-files>
 </project-private>

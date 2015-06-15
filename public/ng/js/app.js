@@ -44,6 +44,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'public/ng/search.php',
         controller: 'searchCtrl'
       }).
+        when('/car/:car_id', {
+        templateUrl: 'public/ng/car.php',
+        controller: 'carCtrl'
+      }).
       otherwise({
         redirectTo: '/',
       });
@@ -64,6 +68,13 @@ myApp.controller('newsCtrl', function ($scope,$http){
     $scope.displayNews = function (index){
         $scope.currentNews = $scope.news[index];
     }
+});
+
+myApp.controller('carCtrl', function ($scope,$http,$routeParams){
+    $http.get('car/viewcar?id='+$routeParams.car_id).success(function(data) {
+                $scope.car = data['car'];
+              
+            });
 });
 
 

@@ -158,7 +158,7 @@
              
 
                 <div class="col-md-12">
-                         <a ng-href="index.php/Car/ViewCar?id={{car.id}}" class="thumbnail">
+                         <a ng-href="#/car/{{car.id}}" class="thumbnail">
                         <img class="img-responsive" ng-src="{{car.img}}" alt="{{car.producer}} - {{car.model}}"
                              style="width:150px;height:150px">
                     </a>

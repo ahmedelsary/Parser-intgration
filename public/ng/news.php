@@ -117,15 +117,14 @@
 </script>
                 </div>
                 <!-- end calender-->
-                
-                {{news}}
+
             <div class="span9">
             	<div class="row">
                 	<section id="projects">
                     	<ul id="thumbs">
                             
                         <!-- Item  and Filter Name -->
-                        <li class="item-thumbs span3 design" ng-repeat="n in news" ng-click="displayNews($index)">
+<!--                        <li class="item-thumbs span3 design" ng-repeat="n in news" ng-click="displayNews($index)">
                                     
                             	 Fancybox - Gallery Enabled - Title - Full Image 
                             	<a class="hover-wrap fancybox external btn-open" onclick="showNews()" >
@@ -135,7 +134,7 @@
                                  Thumb Image and Description 
                                
                                 <img src="public/ng/img/work/thumbs/image-03.jpg"/>
-                        </li>
+                        </li>-->
                             
                             
                         
