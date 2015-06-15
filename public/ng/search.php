@@ -1,6 +1,6 @@
                 <!-- search -->
                 
-                <style type="text/css">
+<style type="text/css">
 .styled-select select {
    background: transparent;
    width: 215px;
@@ -23,50 +23,57 @@
    }
    
 </style>
-
-<div class="span3">
-    <form class="form-inline" action="" method="post">
+<div style="margin-top:50px;">
+<div class="span3" >
+    
+    <input type="radio" value="simple" ng-model="searchtype" /> Simple Search &nbsp;&nbsp;&nbsp;
+    <input type="radio" value="adv" ng-model="searchtype" /> Advanced Search 
+    <br />
+    <br />
+    <br />
+    
+    <div ng-show="searchtype == 'simple'">
+        <form class="form-inline" ng-submit="simpleSearch()">
         <div class="form-group">
             <div class="col-xs-12">
                 <label>Search</label><br />
-                <input required="required" type="text" class="form-control" id="keyword" name="keyword" placeholder="enter keyword to search"  style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
+                <input required="required" type="text" class="form-control" id="keyword" name="keyword" ng-model="formData.keyword" placeholder="enter keyword to search"  style="height:34px;width:185px;background: #26292E; border-color:#26292E;">
                 <input type="submit" value="search" name="sub" class="submit"  style="height:34px;width:50px;background: #26292E; border-color:#26292E;">
             </div>
-            <div class="col-xs-12">
-             <label class="nn">get data from web sites now </label> <input type="checkbox" name="now">
-            </div>
+          
             
             <div class="col-xs-12">
-             <label class="nn">get fresh data </label> <input type="checkbox" name="now">
+                <input type="checkbox" name="now" ng-model="formData.now">
+             <label class="nn"> Get fresh data </label> 
             </div>
             
-            <div class="col-xs-12">
-             <label class="nn">Advanced Search</label> <input type="checkbox" name="now">
-            </div>
+           
             
         </div>
     </form>
-    <div style="margin-left:30px; margin-top: 70px;">
+        </div>
+    <div style="margin-left:30px;" ng-show="searchtype == 'adv'">
         <!--<a class="btn" data-toggle="collapse" data-target="#advanced" >Search</a>--> 
-        
+    
         <div  style="height:45px;width:150px;background: #26292E; border-color:#26292E;padding-top: 7px;" class="text-center">
              <h6>Advanced Search:</h6>
          </div><br/>
         
         <div id="advanced" class="collapse in">
-    <form class="form-inline" method="post">
+            <form class="form-inline" ng-submit="advSearch()">
 
         <div class="form-group styled-select" >
 
-            <select class="styled-select" name="mark" id="mark" >
-                <option value="">Select Car Mark</option>
-                 </select>
+            <select class="styled-select" name="mark" ng-model="formData.mark" id="mark" >
+                <option ng-repeat="mark in marks" value="{{mark.producer}}" ng-selected="formData.mark == mark.producer">{{mark.producer}}</option>
+            </select>
         </div> <br/><br/>
         
         <div class="form-group styled-select">
             
-            <select class=" styled-select" name="model" id="model">
-               <option value="">Select Model</option>           
+            <select class=" styled-select" name="model" id="model" ng-model="formData.model">
+                <option ng-repeat="model in models" value="{{model.model}}" ng-selected="formData.model == model.model">{{model.model}}</option>
+           
             </select>
             
 
@@ -141,16 +148,17 @@
             
            <div class="container">
    
-     <div class="col-md-4">
+               <div class="col-md-4" ng-repeat="car in cars">
         <div class="panel ">
             <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
-                <h3 class="panel-title">title</h3>
+                <h3 class="panel-title">{{car.producer}} - {{car.model}} - {{car.year}}</h3>
             </div>
             <div class="panel-body" >
              
 
                 <div class="col-md-12">
-                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                         <a ng-href="index.php/Car/ViewCar?id={{car.id}}" class="thumbnail">
+                        <img class="img-responsive" ng-src="{{car.img}}" alt="{{car.producer}} - {{car.model}}"
                              style="width:150px;height:150px">
                     </a>
 
@@ -158,15 +166,13 @@
                
                 <table class="table">
                     <th>Price</th>
-                    <th>Year</th>
                     <th>Type</th>
                 
                     <tr>
 
-                        <td>price</td>
-                        <td>year</td>
+                        <td> {{car.price}} </td>
 
-                        <td>type</td>
+                        <td> {{car.type}} </td>
 
                     </tr>
                 </table>
@@ -174,39 +180,6 @@
             </div>
 </div>
         
-
-        <div class="col-md-4">
-        <div class="panel ">
-            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
-                <h3 class="panel-title">title</h3>
-            </div>
-            <div class="panel-body" >
-             
-
-                <div class="col-md-12">
-                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
-                             style="width:150px;height:150px">
-                    </a>
-
-                </div>
-               
-                <table class="table">
-                    <th>Price</th>
-                    <th>Year</th>
-                    <th>Type</th>
-                
-                    <tr>
-
-                        <td>price</td>
-                        <td>year</td>
-
-                        <td>type</td>
-
-                    </tr>
-                </table>
-            </div>
-            </div>
-</div>
          
           
 
@@ -226,3 +199,5 @@
                      
         </div>
     </div>  
+                    
+                </div>

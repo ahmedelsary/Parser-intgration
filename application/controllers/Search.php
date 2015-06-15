@@ -2,46 +2,58 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Search extends Home
+class Search extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library('pdf');
+        $this->pdf->fontpath='font/';
+        
+    }
+     function SimpleSearch(){
 
-    function SimpleSearch(){
-
-        $this->load->view('SimpleSearch_view');
+//        $this->load->view('SimpleSearch_view');
 
 
-        $this->form_validation->set_rules('keyword', 'keyword', 'required');
+//        $this->form_validation->set_rules('keyword', 'keyword', 'required');
+        $response_result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        if ($this->input->post()) {
 
-        if ($this->input->post('sub')) {
-
-            if ($this->form_validation->run() == FALSE) {
-                echo 'please enter a value';
-            } else {
+//            if ($this->form_validation->run() == FALSE) {
+//                echo 'please enter a value';
+//            } else {
                 $keyword = trim($this->input->post('keyword'), "'");
 
                 $now=$this->input->post('now');
                 if($now){
 
-                    $result[]=parent::car100100_new(0,$keyword,1);
-                    $result[]=parent::car100100_used(0,$keyword,1);
+//                    $result[]=  car100100_new(0,$keyword,1);
+//                    $result[]=  car100100_used(0,$keyword,1);
+//
+//                    $result[]=  contactcars_new(0,$keyword,1);
+//                    $result[]=  contactcars_used(0,$keyword,1);
 
-                    $result[]=parent::contactcars_new(0,$keyword,1);
-                    $result[]=parent::contactcars_used(0,$keyword,1);
-
-                    $result[]=parent::dubizzle(0,$keyword,1);
+                    $result[]=  dubizzle(0,$keyword,1);
 
 
-                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+//                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+                    $result=array_merge($result[0]);
 
                 }else{
                     $result = $this->Home_model->simpleSearchModel($keyword);
                 }
 
-                $data = array('response' => $result);
+//                $data = array('response' => $result);
+                $response_result['items'] = $result;
+                
+                
+                echo json_encode($response_result);
+//                $this->load->view('result_search_view', $data);
 
-                $this->load->view('result_search_view', $data);
-
-            }
+//            }
 
 
         }
@@ -50,28 +62,32 @@ class Search extends Home
 
     public function AdvancedSearch()
     {
-        $this->load->view('AdvancedSearch_view');
+//        $this->load->view('AdvancedSearch_view');
 
-        $this->form_validation->set_rules('maxcapacity', 'maxcapacity', 'integer');
-        $this->form_validation->set_rules('mincapacity', 'mincapacity', 'integer');
-        $this->form_validation->set_rules('maxyear', 'maxyear', 'integer');
-        $this->form_validation->set_rules('minyear', 'minyear', 'integer');
-        $this->form_validation->set_rules('maxprice', 'maxprice', 'integer');
-        $this->form_validation->set_rules('minprice', 'minprice', 'integer');
-        if ($this->input->post('sub')) {
-            if ($this->form_validation->run() == FALSE) {
-
-                echo '
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Error</h3>
-                </div>
-                <div class="panel-body">
-                    please enter a valid value!
-                </div>
-			</div>';
-
-            } else {
+//        $this->form_validation->set_rules('maxcapacity', 'maxcapacity', 'integer');
+//        $this->form_validation->set_rules('mincapacity', 'mincapacity', 'integer');
+//        $this->form_validation->set_rules('maxyear', 'maxyear', 'integer');
+//        $this->form_validation->set_rules('minyear', 'minyear', 'integer');
+//        $this->form_validation->set_rules('maxprice', 'maxprice', 'integer');
+//        $this->form_validation->set_rules('minprice', 'minprice', 'integer');
+        
+        $response_result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        if ($this->input->post()) {
+//            if ($this->form_validation->run() == FALSE) {
+//
+//                echo '
+//            <div class="panel panel-danger">
+//                <div class="panel-heading">
+//                    <h3 class="panel-title">Error</h3>
+//                </div>
+//                <div class="panel-body">
+//                    please enter a valid value!
+//                </div>
+//			</div>';
+//
+//            } else {
 
                 $count = 0;
 
@@ -223,11 +239,15 @@ class Search extends Home
 
                 $result = $this->Home_model->AdvancedSearchModel($sql);
 
-                $data = array('response' => $result);
-                $this->load->view('result_search_view', $data);
+//                $data = array('response' => $result);
+                $response_result['items'] = $result;
+                
+                
+                echo json_encode($response_result);
+//                $this->load->view('result_search_view', $data);
 
 
-            }
+//            }
         }
 
     }
@@ -252,11 +272,11 @@ class Search extends Home
                 $now = $this->input->post('now');
                 if ($now) {
 
-                    $result[] = parent::car100100_new(0, $keyword, 10);
-                    $result[] = parent::car100100_used(0, $keyword, 10);
-                    $result[] = parent::contactcars_new(0, $keyword, 10);
-                    $result[] = parent::contactcars_used(0, $keyword, 10);
-                    $result[] = parent::dubizzle(0, $keyword, 10);
+                    $result[] =  car100100_new(0, $keyword, 10);
+                    $result[] =  car100100_used(0, $keyword, 10);
+                    $result[] =  contactcars_new(0, $keyword, 10);
+                    $result[] =  contactcars_used(0, $keyword, 10);
+                    $result[] =  dubizzle(0, $keyword, 10);
 
 
                     $result['items'] = array_merge($result[0], $result[1], $result[2], $result[3], $result[4]);
@@ -443,32 +463,18 @@ class Search extends Home
     }
 
 
-    function  getModels()
-    {
-        $result = new ArrayObject();
-        header('Content-Type: application/json');
-        
-        $mark = $this->input->get('mark');
-        $result['items'] = $this->Home_model->SelectModelByMark($mark);
-
-        $result['code'] = 'success';
-        echo json_encode($result);
-//        echo '<option value="">Select Model</option>';
-//        foreach ($result as $row) {
-//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
-//        }
-    }
+   
     //ma7moud
     function SimpleSearchReport()
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-		$this->load->view('simpleSearchReport');
+//		$this->load->view('simpleSearchReport');
         if ($this->aauth->is_loggedin())
         {
             if ($this->aauth->is_member('Admin',FALSE))
             {
-                if ($this->input->post('sub')) 
+                if ($this->input->post()) 
                 {
                     $type = $this->input->post('type');
                     if ($type == 'Top')
@@ -527,12 +533,27 @@ class Search extends Home
     //ma7moud
     function printpdf()
     {
+        
+        
+        if ($this->input->post()) 
+        {
+            
+            
+               // Send Headers
+        header('Content-type: application/pdf');
+        header('Content-Disposition: attachment; filename="myPDF.pdf');
 
+        // Send Headers: Prevent Caching of File
+        header('Cache-Control: private');
+        header('Pragma: private');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
-		if ($this->input->post('pdf')) 
-		{
-			$pdfkeyword = $this->input->post('keyword');
-			$pdfcount   = $this->input->post('count');
+        
+            
+        $pdfkeyword = $this->input->post('keyword');
+        $pdfcount   = $this->input->post('count');
+        $header   = $this->input->post('header');
+        
         $this->pdf->AddPage();
 
         $this->pdf->SetFont('Arial','',12);
@@ -553,15 +574,18 @@ class Search extends Home
          $this->pdf->Ln(20);
 
          $this->pdf->SetFont('Arial','B',16);
-
+         
+         $this->pdf->Cell(100, 10, $header, 1, 0, 'C');
+         $this->pdf->Cell(40, 10, "Count", 1, 1, 'C');
+            
         for ($i=0;$i< count($pdfkeyword);$i++) {
 
             $this->pdf->Cell(100, 10, $pdfkeyword[$i], 1, 0, 'C');
             $this->pdf->Cell(40, 10, $pdfcount[$i], 1, 1, 'C');
-
+            
 
         }
-
+        
         // Position at 1.5 cm from bottom
         $this->pdf->SetY(266);
         // Arial italic 8
@@ -582,33 +606,41 @@ class Search extends Home
     function printcsv(){
 
 
-		if ($this->input->post('csv')) 
+		if ($this->input->post()) 
 		{
+                    
+                    header('Content-type: application/CSV');
+                    header('Content-Disposition: attachment; filename="myCSV.csv');
+
+                    // Send Headers: Prevent Caching of File
+                    header('Cache-Control: private');
+                    header('Pragma: private');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 			
 			$csvkeyword = $this->input->post('keyword');
 			$csvcount   = $this->input->post('count');
-/*var_dump($csvkeyword);
-var_dump($csvcount);
-exit;*/
-$report=array();
-for($i=0;$i<count($csvcount);$i++)
-{
+                        $header   = $this->input->post('header');
 
-$report[]=array($csvkeyword[$i],$csvcount[$i]);
+            $report=array();
+            $report[]=array($header,"Count");
+            for($i=0;$i<count($csvcount);$i++)
+            {
 
-}
+            $report[]=array($csvkeyword[$i],$csvcount[$i]);
+
+            }
 
 
-        $R=new CI_PHPReport();
-        $R->load(array(
-                'id'=>'report',
-                'data'=>$report
-            )
-        );
+                    $R=new CI_PHPReport();
+                    $R->load(array(
+                            'id'=>'report',
+                            'data'=>$report
+                        )
+                    );
 
-        echo $R->render('csv');
-        //exit();
-}
+                    echo $R->render('csv');
+
+        }
     }
     
     // ma7moud
@@ -616,7 +648,7 @@ $report[]=array($csvkeyword[$i],$csvcount[$i]);
 	{
           $result = new ArrayObject();
         header('Content-Type: application/json');
-        if ($this->input->post('sub')) 
+        if ($this->input->post()) 
         {
                 $type = $this->input->post('type');
                 $time=0;
@@ -648,4 +680,29 @@ $report[]=array($csvkeyword[$i],$csvcount[$i]);
         }
         		
     }
+    function getMark(){
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+         $result['items'] = $this->Home_model->AdvancedSearchMark();
+        echo json_encode($result);
+        
+        
+    }
+     function  getModels()
+    {
+        $result = new ArrayObject();
+        header('Content-Type: application/json');
+        
+        $mark = $this->input->get('mark');
+        $result['items'] = $this->Home_model->SelectModelByMark($mark);
+
+        $result['code'] = 'success';
+        $result['get'] = $this->input->get();
+        echo json_encode($result);
+//        echo '<option value="">Select Model</option>';
+//        foreach ($result as $row) {
+//            echo "<option value=" . $row['model'] . ">" . $row['model'] . "</option>";
+//        }
+    }
+    
 }

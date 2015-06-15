@@ -41,6 +41,8 @@
     <!--<link href="<?php echo base_url(); ?>public/ng/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css">-->
     <!--<link href="<?php echo base_url(); ?>public/ng/admin/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css">-->
     
+    
+    <script src="<?php echo base_url(); ?>public/ng/admin/js/filesaver.min.js"></script>
         <!-- AngularJS JavaScript -->
     <script src="<?php echo base_url(); ?>public/ng/admin/js/angular.min.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/js/angular-route.js"></script>
@@ -49,6 +51,7 @@
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/menuctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/newsctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/automatectrl.js"></script>
+    <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/reportctrl.js"></script>
     
 </head>
 
@@ -136,6 +139,18 @@
                                 <li>
                                     <a href="#/automate"><i class="fa fa-bars fa-fw"></i> Automate</a>
                                 </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bookmark fa-fw"></i> Reports<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/simplereport"><i class="fa fa-bars fa-fw"></i> Simple Report</a>
+                                </li>
+                                
                                 
                             </ul>
                             <!-- /.nav-second-level -->

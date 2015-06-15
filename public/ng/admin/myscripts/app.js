@@ -39,6 +39,10 @@ app.config(function($routeProvider) {
         templateUrl: 'public/ng/admin/automate.php',
         controller: 'automateCtrl'
       }).
+        when('/simplereport', {
+        templateUrl: 'public/ng/admin/simplereport.php',
+        controller: 'reportCtrl'
+      }).
       when('/login', {
         templateUrl: 'public/ng/admin/login.php',
         controller: 'loginCtrl'
