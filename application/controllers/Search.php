@@ -30,17 +30,17 @@ class Search extends CI_Controller
                 $now=$this->input->post('now');
                 if($now){
 
-//                    $result[]=  car100100_new(0,$keyword,1);
-//                    $result[]=  car100100_used(0,$keyword,1);
-//
-//                    $result[]=  contactcars_new(0,$keyword,1);
-//                    $result[]=  contactcars_used(0,$keyword,1);
+                    $result[]=  car100100_new(0,$keyword,10);
+                    $result[]=  car100100_used(0,$keyword,10);
 
-                    $result[]=  dubizzle(0,$keyword,1);
+                    $result[]=  contactcars_new(0,$keyword,10);
+                    $result[]=  contactcars_used(0,$keyword,10);
+
+                    $result[]=  dubizzle(0,$keyword,10);
 
 
-//                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
-                    $result=array_merge($result[0]);
+                    $result=array_merge($result[0],$result[1],$result[2],$result[3],$result[4]);
+
 
                 }else{
                     $result = $this->Home_model->simpleSearchModel($keyword);
@@ -77,7 +77,7 @@ class Search extends CI_Controller
 //        $this->form_validation->set_rules('minyear', 'minyear', 'integer');
 //        $this->form_validation->set_rules('maxprice', 'maxprice', 'integer');
 //        $this->form_validation->set_rules('minprice', 'minprice', 'integer');
-        
+
         $response_result = new ArrayObject();
         header('Content-Type: application/json');
         
