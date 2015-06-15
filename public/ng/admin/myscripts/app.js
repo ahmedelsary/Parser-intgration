@@ -73,6 +73,9 @@ app.controller('homeCtrl', function($scope,$http,$location) {
     
 });
 
+
+
+
 function CheckUser(scope,http,location){
     http.get('user/usersget').success(function(data) {
               console.log(data);
