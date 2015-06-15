@@ -31,8 +31,7 @@
                 <nav id="options" class="work-nav">
                     <ul id="filters" class="option-set" data-option-key="filter">
                       
-                        <li><a href="#filter" data-option-value="*" class="selected">All Categories</a></li>
-                        <li><a href="#/search" style="height:34px;width:170px;background: #26292E; border-color:#26292E;" class="btn">search for cars</a>
+                        <li><a href="#/news" data-option-value="*" class="selected">All Categories</a></li>
 </li>
                         
                           <li>
@@ -49,9 +48,10 @@
                                 </div>
                             </div>
                         </li>
-                         <li><a href="#filter" data-option-value=".photography">Show all Events</a></li>
-                        <li><a href="#filter" data-option-value=".design">News</a></li>
-                        <li><a href="#filter" data-option-value=".video">Video</a></li>
+                         <li><a href="#/search">search for cars</a>
+                         <li><a href="#/news" data-option-value=".photography">Show all Events</a></li>
+                        <li><a href="#/news" data-option-value=".design">News</a></li>
+                        <!--<li><a href="#filter" data-option-value=".video">Video</a></li>-->
            
                     </ul>
                 </nav>
@@ -124,7 +124,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-02.jpg" 
+                                <img src="public/ng/img/work/thumbs/image-01.jpg" 
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                      Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
@@ -139,7 +139,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-03.jpg" 
+                                <img src="public/ng/img/work/thumbs/image-01.jpg" 
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                                      Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
@@ -154,7 +154,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-08.jpg"
+                                <img src="public/ng/img/work/thumbs/image-02.jpg"
                                      alt="Video">
                             </li>
                         	<!-- End Item -->
@@ -168,7 +168,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-04.jpg" 
+                                <img src="public/ng/img/work/thumbs/image-02.jpg" 
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                                      Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
@@ -183,7 +183,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-05.jpg" 
+                                <img src="public/ng/img/work/thumbs/image-02.jpg" 
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
                         	<!-- End Item -->
@@ -198,7 +198,7 @@
                                 </a>
                                 <!-- Thumb Image and Description -->
                        
-                                <img src="public/ng/img/work/thumbs/image-09.jpg"
+                                <img src="public/ng/img/work/thumbs/image-03.jpg"
                                      alt="Video">
                             </li>
                         	<!-- End Item -->
@@ -212,7 +212,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-06.jpg"
+                                <img src="public/ng/img/work/thumbs/image-03.jpg"
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                                      Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
@@ -226,7 +226,7 @@
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
                                 <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-07.jpg"
+                                <img src="public/ng/img/work/thumbs/image-03.jpg"
                                      alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
                             </li>
                         	<!-- End Item -->
@@ -276,8 +276,9 @@ $(document).ready(function(){
 </script>
 </div>
 <div id="popup-content" >
-    <img src="public/ng/img/work/thumbs/image-05.jpg" 
+    <img src="public/ng/img/work/thumbs/image-01.jpg" 
     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. ">
+    <div><h3>title</h3></div>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce libero velit, dictum eget ligula scelerisque, elementum venenatis purus. Phasellus placerat tempor velit id ultricies. Vivamus sollicitudin, dui non imperdiet maximus, tortor lorem interdum lectus.</p>
 </div>
 
