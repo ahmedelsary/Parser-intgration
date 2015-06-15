@@ -242,6 +242,7 @@ class Search extends CI_Controller
 //                $data = array('response' => $result);
                 $response_result['items'] = $result;
                 
+               
                 
                 echo json_encode($response_result);
 //                $this->load->view('result_search_view', $data);

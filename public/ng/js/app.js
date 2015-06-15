@@ -235,12 +235,11 @@ myApp.controller('searchCtrl', function($scope, $http,$location) {
     $scope.advSearch = function(){
         $http({
             method  : 'POST',
-            url     : 'search/simplesearch',
+            url     : 'search/advancedsearch',
             data    : $.param($scope.formData),  // pass in data as strings
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-                console.log(data);
               $scope.cars = data['items'];
             });
     };
