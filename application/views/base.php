@@ -187,7 +187,7 @@
 
 
 
-<div ng-view style="background-color: #2f3239;padding-top: 90px;"></div>
+<div ng-view style="background-color: #5f656c;padding-top: 90px;"></div>
 
 
 <!-- Footer -->
