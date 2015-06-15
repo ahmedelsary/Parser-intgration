@@ -42,30 +42,21 @@ class Admin1 extends CI_Controller
                     } else {
                         $ccars = 0;
                     }
+                    if ($cr == "true") {
+                        $cr = 1;
+                    } else {
+                        $cr = 0;
+                    }
 
 
-//                    if ($minute=='-1') {
-//                        $minute = '*';
-//                    }
-//                    if ($hour=='-1') {
-//                        $hour = '*';
-//                    }
-//                    if ($day=='-1') {
-//                        $day = '*';
-//                    }
-//                    if ($month=='-1') {
-//                        $month = '*';
-//                    }
-//                    if ($day_of_week=='-1') {
-//                        $day_of_week = '*';
-//                    }
 
                     echo exec('crontab -r');
-                    exec("pkill -f ".base_url()."index.php");
+                    exec("pkill -f Home");
                     write_file($cron, '', 'w+');
 
-                    if ($cr) {
-                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php ".base_url()."index.php Home";
+                    if ($cr==1) {
+                        $project=getProjectName();
+                        $parse =$minute ." ".$hour." ".$day." ".$month." ".$day_of_week." /usr/bin/php "."/var/www/html/".$project."/index.php Home";
                         $output = shell_exec('crontab -l');
                         file_put_contents($cron, $output . $parse . PHP_EOL);
                         echo exec("crontab $cron");
@@ -84,10 +75,7 @@ class Admin1 extends CI_Controller
                 $result['post'] = $this->input->post();
                 echo json_encode($result); 
             }
-//        }
 
-
-//    }
 
 }
 

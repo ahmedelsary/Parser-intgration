@@ -13,7 +13,12 @@ class Car extends CI_Controller
                 $mark = $result[0]['producer'];
                 $model = $result[0]['model'];
                 $year = $result[0]['year'];
-                $this->Home_model->addMostView($mark,$model ,$year);
+                  if($this->aauth->get_user_id(FALSE))
+                {
+                    $userview['fkuser'] =  $this->aauth->get_user_id(FALSE);
+                }
+                $userview['car']=$mark.'-'.$model.'-'.$year;
+                $this->Home_model->addMostView($userview);
 		/*echo '<pre>';
 		print_r($result);
 		echo  '</pre>';*/

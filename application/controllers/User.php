@@ -31,15 +31,10 @@ class User extends CI_Controller{
     {
        $result = new ArrayObject();
        header('Content-Type: application/json');
-        if($this->aauth->is_loggedin())
-        {
-            $this->aauth->logout();
-            $result['code'] = 'loggedout';
-        }
-        else 
-        {
-            $result['code'] = 'Not_loggedout';
-        }
+       
+        $this->aauth->logout();
+        $result['code'] = 'loggedout';
+       
         echo json_encode($result);
         
     }

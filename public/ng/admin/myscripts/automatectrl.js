@@ -54,7 +54,7 @@ function getConfig($http,$scope){
               $scope.formData.contactcars = items[2] == 1;
               $scope.formData.dubizzle = items[3] == 1;
               
-              $scope.formData.cron = items[4] == 'on';
+              $scope.formData.cron = items[4] == 1  ;
               
               
               $scope.minutes = [{value:'*', label:'All'}]

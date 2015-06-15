@@ -39,6 +39,10 @@ app.config(function($routeProvider) {
         templateUrl: 'public/ng/admin/automate.php',
         controller: 'automateCtrl'
       }).
+        when('/simplereport', {
+        templateUrl: 'public/ng/admin/simplereport.php',
+        controller: 'reportCtrl'
+      }).
       when('/login', {
         templateUrl: 'public/ng/admin/login.php',
         controller: 'loginCtrl'
@@ -68,6 +72,9 @@ app.controller('homeCtrl', function($scope,$http,$location) {
     $scope.page_title = 'Main Page';
     
 });
+
+
+
 
 function CheckUser(scope,http,location){
     http.get('user/usersget').success(function(data) {
