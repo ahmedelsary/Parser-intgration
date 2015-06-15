@@ -89,7 +89,7 @@ myApp.controller('loginCtrl', function ($scope, $location, $http,user,$rootScope
     $scope.login = function (){
         $http({
             method  : 'POST',
-            url     : 'index.php/user/login',
+            url     : 'user/login',
             data    : $.param($scope.formData),  // pass in data as strings
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
@@ -116,13 +116,13 @@ myApp.controller('loginCtrl', function ($scope, $location, $http,user,$rootScope
     }
 });
 
-myApp.controller('regCtrl', function ($scope, $http){
+myApp.controller('regCtrl', function ($scope, $http,$location){
     $scope.formData = {};
     
     $scope.reg = function (){
         $http({
             method  : 'POST',
-            url     : 'index.php/user/register',
+            url     : 'user/register',
             data    : $.param($scope.formData),  // pass in data as strings
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
@@ -131,8 +131,10 @@ myApp.controller('regCtrl', function ($scope, $http){
 
               if (data['code'] != 'success') {
                   $scope.message = data.msgs;
+                  
               } else {
                   $scope.message = 'User Added';
+                  $location.path('/login');
               }
             });
     }
