@@ -54,7 +54,7 @@ class User extends CI_Controller{
             if($user)
             {
                  $result['code'] = 'success';
-                 $user['role'] = 'User';
+//                 $user->role = 'User';
 
                  $result['user_id'] = $user;
                  $this->aauth->add_member($user, 'Users');
