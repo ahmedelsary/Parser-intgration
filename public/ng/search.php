@@ -142,11 +142,10 @@
 </div>
 </div>     
 </div>
-                
-                <div class="row"> 
-        <div class="span9">
+         <div class="container">
+            <div class="row"> 
+             <div class="span8">
             
-           <div class="container">
    
                <div class="col-md-4" ng-repeat="car in cars">
         <div class="panel ">
@@ -184,6 +183,110 @@
           
 
 
+   
+     <div class="col-md-4">
+        <div class="panel ">
+            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
+                <h3 class="panel-title">title</h3>
+            </div>
+            <div class="panel-body" >
+             
+
+                <div class="col-md-12">
+                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                             style="width:150px;height:150px">
+                    </a>
+
+                </div>
+               
+                <table class="table">
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                
+                    <tr>
+
+                        <td>price</td>
+                        <td>year</td>
+
+                        <td>type</td>
+
+                    </tr>
+                </table>
+            </div>
+            </div>
+</div>
+                 
+                 
+                 
+                 
+   
+     <div class="col-md-4">
+        <div class="panel ">
+            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
+                <h3 class="panel-title">title</h3>
+            </div>
+            <div class="panel-body" >
+             
+
+                <div class="col-md-12">
+                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                             style="width:150px;height:150px">
+                    </a>
+
+                </div>
+               
+                <table class="table">
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                
+                    <tr>
+
+                        <td>price</td>
+                        <td>year</td>
+
+                        <td>type</td>
+
+                    </tr>
+                </table>
+            </div>
+            </div>
+</div>
+                 
+   
+     <div class="col-md-4">
+        <div class="panel ">
+            <div class="panel-heading"style="background: #26292E;border-color:#26292E;border: 15px; ">
+                <h3 class="panel-title">title</h3>
+            </div>
+            <div class="panel-body" >
+             
+
+                <div class="col-md-12">
+                        <img class="img-responsive" src="public/ng/img/work/thumbs/image-02.jpg" alt="producer"
+                             style="width:150px;height:150px">
+                    </a>
+
+                </div>
+               
+                <table class="table">
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                
+                    <tr>
+
+                        <td>price</td>
+                        <td>year</td>
+
+                        <td>type</td>
+
+                    </tr>
+                </table>
+            </div>
+            </div>
+</div>
 
 
 <!--            <div class="panel panel-danger">

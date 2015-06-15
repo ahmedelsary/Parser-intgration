@@ -678,7 +678,7 @@ nav#menu #menu-nav li a:hover {
 }
 
 .work-nav #filters li a {
-	color: #7F8289;
+	color: #ffffff;
 	font-size: 16px;
 	display: block;	
 }
@@ -1375,4 +1375,8 @@ footer .credits {
       -ms-transition: none;
        -o-transition: none;
           transition: none;
+}
+.datetimepicker 
+{
+    color:#000 !important;
 }

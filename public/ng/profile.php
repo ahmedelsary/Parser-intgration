@@ -67,10 +67,14 @@
                    
                     <br>
                     <a  class="btn btn-success submit" ng-click="updateUser()">Update Details</a>
+                    &nbsp;&nbsp;&nbsp;
+                        <a href="#/changepass" class="external btn " <h3>Change Your Password</h3></a>
+                       
+               
                     <br /><br/>
                 </div>
                 <div class="col-md-8">
-                    <div class="alert alert-info">
+<!--                    <div class="alert alert-info">
                         <h4>User Profile  : </h4>
                        
                     </div>
@@ -84,12 +88,9 @@
                             <i class="fa fa-twitter"></i>&nbsp; Twitter </a>
                         <a href="http://www.linkedin.com" class="btn btn-social btn-linkedin">
                             <i class="fa fa-linkedin"></i>&nbsp; Linkedin </a>
-                    </div>
-                    <br />
-                    <div class="form-group col-md-8">
-                        <a href="#/changepass" class="external btn " <h3>Change Your Password</h3></a>
-                       
-                </div>
+                    </div>-->
+                   
+                    
             </div>
             <!-- ROW END -->
 
