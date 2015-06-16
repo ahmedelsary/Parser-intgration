@@ -74,8 +74,6 @@ class User extends CI_Controller{
     {
         $result = new ArrayObject();
         header('Content-Type: application/json');
-        if ($this->aauth->is_loggedin)
-        {
             if ($this->input->post())
             {
                 if($this->aauth->is_member('Admin',FALSE))
@@ -87,9 +85,7 @@ class User extends CI_Controller{
                     $result['code'] = 'not_admin';
                 }
             }
-        }else{
-            $result['code'] = 'not_loggedin';
-        }
+        
         echo json_encode($result);
 
     }

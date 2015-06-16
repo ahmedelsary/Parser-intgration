@@ -5,7 +5,7 @@
             <url>public/ng/news.php</url>
             <bookmark id="1">
                 <name/>
-                <line>304</line>
+                <line>185</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,12 +13,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/html/Parser-intgration/public/ng/news.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/js/app.js</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/car.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/controllers/Car.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/controllers/Search.php</file>
-            <file>file:/var/www/html/Parser-intgration/public/ng/search.php</file>
-            <file>file:/var/www/html/Parser-intgration/application/views/carView.php</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/app.js</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/newsctrl.js</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/myscripts/eventsctrl.js</file>
+            <file>file:/var/www/html/Parser-intgration/public/ng/admin/addnews.php</file>
+            <file>file:/var/www/html/Parser-intgration/application/controllers/Events.php</file>
+            <file>file:/var/www/html/Parser-intgration/application/controllers/News.php</file>
+            <file>file:/var/www/html/Parser-intgration/application/views/admin.php</file>
         </group>
     </open-files>
 </project-private>

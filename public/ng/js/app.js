@@ -161,7 +161,7 @@ myApp.controller('loginCtrl', function ($scope, $location, $http,user,$rootScope
 
                   }
               });
-                $location.path('/');
+                $location.path('/news');
               }
             });
     }
