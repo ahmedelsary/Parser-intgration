@@ -24,6 +24,15 @@
                         
                     </textarea>
                 </div>
+                
+                <div class="form-group">
+                    <label>Date</label><br />
+                        
+                    
+                    <div style="display:inline-block; min-height:290px;">
+                        <datepicker ng-model="tempItem.date" show-weeks="true" class="well well-sm" custom-class="getDayClass(tempItem.date, mode)"></datepicker>
+                    </div>
+                </div>
 
 
             <input type="submit" value="Add" class="btn btn-success pull-right"/>

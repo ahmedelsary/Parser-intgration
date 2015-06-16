@@ -9,7 +9,10 @@ class News extends CI_Controller {
 	public function index()
 	{
             //if admin
-            $this->view(null);
+//            $this->view(null);
+            
+            
+            
 	}
         
         // view function for news return all news / and code success
@@ -30,11 +33,17 @@ class News extends CI_Controller {
             header('Content-Type: application/json');
             if($this->aauth->is_member('Admin', False))
             {
+                
+//                $datestring = "%Y-%m-%d %h:%i";
+//                $time = time();
+//            
+//                $now = mdate($datestring, $time);
+            
                 $item = array(
                         'title' =>$this->input->post('title'),
                         'description' =>$this->input->post('description'),
                         'image' => $this->input->post('image'),
-                        'date' => now(),
+                        'date' => $this->input->post('date'),
                         );
                     $this->load->model("news_model");
                     $storedItem = $this->news_model->addNews($item);

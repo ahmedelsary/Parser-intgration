@@ -1,7 +1,8 @@
-app.controller('listEventsCtrl', function($scope, $http,$location) {
+app.controller('listEventsCtrl', function($scope, $http,$location,$filter) {
     CheckUser($scope,$http,$location);
     
     $scope.page_title = 'List Events';
+    $scope.tempItem = {};
     
     $scope.delete = function(id){
         $http({
@@ -11,7 +12,7 @@ app.controller('listEventsCtrl', function($scope, $http,$location) {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-                    updateEvents($http,$scope);
+                    updateEvents($http,$scope,$filter);
             });
     };
     
@@ -22,6 +23,14 @@ app.controller('listEventsCtrl', function($scope, $http,$location) {
     
     
     $scope.saveItem = function(){
+        
+        format = "yyyy-MM-dd";
+        date = $scope.tempItem.date;
+        
+        $scope.tempItem.date = $filter('date')(date, format)
+        
+          
+          
         $http({
             method  : 'POST',
             url     : 'events/edit',
@@ -29,11 +38,11 @@ app.controller('listEventsCtrl', function($scope, $http,$location) {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-              updateEvents($http,$scope);
+              updateEvents($http,$scope,$filter);
             });
     };
     
-    updateEvents($http,$scope);
+    updateEvents($http,$scope,$filter);
 //    registerDataTable();
 });
 
@@ -42,16 +51,23 @@ app.controller('listEventsCtrl', function($scope, $http,$location) {
 
 
 
-function updateEvents(http, scope){
+function updateEvents(http, scope,filter){
     
     http.get('events/view').success(function(data) {
-              console.log(data);
+        
+        format = "yyyy-MM-dd";
+             
 
               if (data['code'] != 'success') {
                   scope.message = "Error";
               } else {
+         
                 scope.items = data['items'];
-                console.log(scope.items);
+                
+                for( item in scope.items){
+                   
+                    scope.items[item].date = new Date(filter('date')(scope.items[item].date.substring(0,10), format))
+                }
               }
             });
 }
@@ -60,12 +76,18 @@ function updateEvents(http, scope){
 
 
 
-app.controller('addEventCtrl', function($scope, $http,$location) {
+app.controller('addEventCtrl', function($scope, $http,$location,$filter) {
     CheckUser($scope,$http,$location);
     
     $scope.page_title = 'Add Event';
+    $scope.tempItem = {};
+    $scope.tempItem.date = new Date();
     
     $scope.addNews = function (){
+       format = "yyyy-MM-dd";
+        date = $scope.tempItem.date;
+        
+        $scope.tempItem.date = $filter('date')(date, format)
         console.log($scope.tempItem);
         $http({
             method  : 'POST',
@@ -74,7 +96,7 @@ app.controller('addEventCtrl', function($scope, $http,$location) {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-              console.log(data);
+             
 
               if (data['code'] != 'success') {
                   $scope.messages = data.msgs;

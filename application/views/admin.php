@@ -212,7 +212,7 @@
     <!--<script src="<?php echo base_url(); ?>public/ng/admin/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>-->
     <!--<script src="<?php echo base_url(); ?>public/ng/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>-->
 
-
+ <script src="<?php echo base_url(); ?>public/ng/admin/dist/js/ui-bootstrap-tpls-0.13.0.min.js"></script>
 
 </body>
 

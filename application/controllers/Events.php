@@ -18,7 +18,7 @@ Class Events extends CI_Controller{
                 'title' => $this->input->post('title'),
                 'description' => $this->input->post('description'),
                 'image' => $this->input->post('image'),
-                'date' => now(),
+                'date' => $this->input->post('date'),
             );
             
             $storedItem = $this->Events_model->create($item);
@@ -72,7 +72,7 @@ Class Events extends CI_Controller{
                 'title' => $this->input->post('title'),
                 'description' => $this->input->post('description'),
                 'image' => $this->input->post('image'),
-                'date' => now(),
+                'date' =>  $this->input->post('date'),
             ); 
             $this->Events_model->update($item);
             $result['code'] = 'sucess';            

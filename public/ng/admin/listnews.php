@@ -21,6 +21,17 @@
                         
                     </textarea>
                 </div>
+                
+                <div class="form-group">
+                    <label>Date</label><br />
+                        
+                    
+                    <div style="display:inline-block; min-height:290px;">
+                        <datepicker ng-model="tempItem.date" show-weeks="true" class="well well-sm" custom-class="getDayClass(tempItem.date, mode)"></datepicker>
+                    </div>
+
+                    
+                </div>
 <!--                <div class="form-group">
                     <label for="url">Image</label>
                     <input type="text" class="form-control" placeholder="URL" ng-model="tempItem.url">
@@ -59,6 +70,7 @@
                         <th class="col-md-1">ID</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Date</th>
                         
                         <th  colspan="2" class="text-center col-md-2">Actions</th>
                     </tr>
@@ -68,7 +80,7 @@
                         <td>{{item.id}}</td>
                         <td>{{item.title}}</td>
                         <td>{{item.description}}</td>
-                        
+                        <td>{{item.date | date:'fullDate'}} </td>
                         <td class="text-center">
                             <a href ng-click="delete(item.id)" />
                                 <i class="fa fa-trash-o fa-2x"> </i>

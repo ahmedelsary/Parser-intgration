@@ -1,6 +1,6 @@
 
 
-var app = angular.module('adminApp', [ 'ngRoute' ]); 
+var app = angular.module('adminApp', [ 'ngRoute', 'ui.bootstrap' ]); 
 
 
 
