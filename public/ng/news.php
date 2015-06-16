@@ -132,7 +132,7 @@
                                   
                             <h3>{{n.title}}</h3>
                             <p>{{n.date}}</p>
-                                <img style="height: 200px;" src="public/ng/img/work/thumbs/image-03.jpg"/>
+                                <img style="height: 200px;" ng-src="{{n.image}}"/>
                                 <p>{{n.description}}</p>
                         </li>
                             
@@ -146,7 +146,7 @@
                                   
                             <h3>{{e.title}}</h3>
                             <p>{{e.date}}</p>
-                            <img style="height: 200px;" src="public/ng/img/work/thumbs/image-02.jpg"/>
+                            <img style="height: 200px;" ng-src="{{e.image}}"/>
                                 <p>{{e.description}}</p>
                         </li>
                             

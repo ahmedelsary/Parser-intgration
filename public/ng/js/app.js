@@ -69,6 +69,9 @@ myApp.controller('newsCtrl', function ($scope,$http){
                   $scope.message = "Error";
               } else {
                 $scope.news = data['items'];
+                for (var i=0; i< $scope.news.length; i++){
+                    $scope.news[i].image = "public/ng/img/work/thumbs/image-02.jpg";
+                }
               }
             });
             
@@ -79,7 +82,9 @@ myApp.controller('newsCtrl', function ($scope,$http){
                   $scope.message = "Error";
               } else {
                 $scope.events = data['items'];
-                console.log(data);
+                for (var i=0; i< $scope.news.length; i++){
+                    $scope.events[i].image = "public/ng/img/work/thumbs/image-03.jpg";
+                }
               }
             });
             
@@ -116,16 +121,27 @@ myApp.controller('mainCtrl', function ($scope){
     
 });
 
-myApp.controller('profileCtrl', function ($scope, $http){
-        $scope.formData = {};
+myApp.controller('profileCtrl', function ($scope, $http,$location){
+    $http.get('user/usersget').success(function(data){
+        if(data['code'] == 'success'){
+            $scope.formData = data['user'];
+        } else {
+            $location.path('/login');
+        }
+    });    
+    
         
          $scope.updateUser = function(){
-        console.log($scope.tempUser);
+        console.log($scope.formData);
         $http({
             method  : 'POST',
             url     : 'user/updateuser',
             data    : $.param($scope.formData),  
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+           }).success(function(data){
+               if (data['code'] == 'success'){
+                   $scope.message = "Updated Successfully";
+               }
            })
 
 }

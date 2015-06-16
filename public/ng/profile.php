@@ -53,13 +53,17 @@
 
    <div class="container" >
         <section style="padding-bottom: 50px; padding-top: 50px;">
+            
+            <div class="alert alert-success" ng-if="message">
+                {{ message }}
+            </div>
             <div class="row">
                 <div class="col-md-4">
                     <img src="public/ng/img/user.jpeg" class="img-rounded img-responsive" />
                     <br />
                     <br />
                     <label>Registered UserName</label>
-                    <input type="text" class="form-control " placeholder="Enter user name" ng-model="formData.username">
+                    <input type="text" class="form-control " placeholder="Enter user name" ng-model="formData.name">
 <!--                    <label>Registered Name</label>
                     <input type="text" class="form-control" placeholder="Enter your name">-->
                     <label>Registered Email</label>
