@@ -372,7 +372,7 @@ CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` varchar(1000) DEFAULT NULL,
-  `img` varchar(100) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)

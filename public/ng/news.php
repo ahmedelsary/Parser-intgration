@@ -1,5 +1,4 @@
 <!--  News and Events  Section -->
-
 <!-- Modal -->
 <div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -53,10 +52,10 @@
         	<div class="span2">
             	<!-- Filter -->
                 <nav id="options" class="work-nav">
-                    <ul id="filters" class="option-set" data-option-key="filter">
-                      
-                        <li><a href="#/news" data-option-value="*" class="selected">All Categories</a></li>
-</li>
+                    <ul>
+                        <li><a href="" ng-click="changeFilter('all')" >All Categories</a></li>
+</li>                   <li><a href="" ng-click="changeFilter('events')" >Show all Events</a></li>
+                        <li><a href="" ng-click="changeFilter('news')"  >News</a></li>
                         
                           <li>
                              <div class=" pull-left">
@@ -73,8 +72,7 @@
                             </div>
                         </li>
                          <li><a href="#/search">search for cars</a>
-                         <li><a href="#/news" data-option-value=".photography">Show all Events</a></li>
-                        <li><a href="#/news" data-option-value=".design">News</a></li>
+                         
                         <!--<li><a href="#filter" data-option-value=".video">Video</a></li>-->
            
                     </ul>
@@ -124,152 +122,35 @@
                     	<ul id="thumbs">
                             
                         <!-- Item  and Filter Name -->
-<!--                        <li class="item-thumbs span3 design" ng-repeat="n in news" ng-click="displayNews($index)">
+                        <li ng-hide="news_filter == 'events'" class="item-thumbs span3 design" ng-repeat="n in news" onclick="showNews()">
                                     
-                            	 Fancybox - Gallery Enabled - Title - Full Image 
-                            	<a class="hover-wrap fancybox external btn-open" onclick="showNews()" >
+                            	  
+                            	<a class="hover-wrap fancybox external btn-open" ng-click="displayNews($index)" >
                                 	<span class="overlay-img"></span>
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
-                                 Thumb Image and Description 
-                               
-                                <img src="public/ng/img/work/thumbs/image-03.jpg"/>
-                        </li>-->
+                                  
+                            <h3>{{n.title}}</h3>
+                            <p>{{n.date}}</p>
+                                <img style="height: 200px;" src="public/ng/img/work/thumbs/image-03.jpg"/>
+                                <p>{{n.description}}</p>
+                        </li>
                             
-                            
-                        
-							<!-- Item  and Filter Name -->
-                        	<li class="item-thumbs span3 design">
+                        <li ng-hide="news_filter == 'news'" class="item-thumbs span3 design" ng-repeat="e in events" onclick="showNews()">
                                     
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a  class="hover-wrap fancybox external btn-open" data-fancybox-group="gallery" title=""
-                                   href="#/news">
+                            	  
+                            	<a class="hover-wrap fancybox external btn-open" ng-click="displayEvent($index)" >
                                 	<span class="overlay-img"></span>
                                     <span class="overlay-img-thumb fa fa-plus"></span>
                                 </a>
-                                <!-- Thumb Image and Description -->
-                               
-                                <img src="public/ng/img/work/thumbs/image-01.jpg"
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis."/>
-                            </li>
-                        	<!-- End Item  -->
+                                  
+                            <h3>{{e.title}}</h3>
+                            <p>{{e.date}}</p>
+                            <img style="height: 200px;" src="public/ng/img/work/thumbs/image-02.jpg"/>
+                                <p>{{e.description}}</p>
+                        </li>
                             
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 design">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a  class="hover-wrap fancybox btn-open" data-fancybox-group="gallery" title="" 
-                                   href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-01.jpg" 
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                     Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 photography">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="gallery" 
-                                   title="" href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-01.jpg" 
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 video">
-                            	<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
-                            	<a class="hover-wrap fancybox-media" data-fancybox-group="video" 
-                                   title="Video Content " href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-02.jpg"
-                                     alt="Video">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 photography">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="gallery" title=""
-                                   href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-02.jpg" 
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 photography">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="" 
-                                   href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-02.jpg" 
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 video">
-                            	<!-- Fancybox Media - Gallery Enabled - Title - Link to Video -->
-                            	<a class="hover-wrap fancybox-media" data-fancybox-group="video" 
-                                   title="Video Content" href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                       
-                                <img src="public/ng/img/work/thumbs/image-03.jpg"
-                                     alt="Video">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 design">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="gallery"
-                                   title="" href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-03.jpg"
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                     Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
-                            
-							<!-- Item and Filter Name -->
-                        	<li class="item-thumbs span3 design">
-                            	<!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                            	<a class="hover-wrap fancybox" data-fancybox-group="gallery" title="" href="#/news">
-                                	<span class="overlay-img"></span>
-                                    <span class="overlay-img-thumb fa fa-plus"></span>
-                                </a>
-                                <!-- Thumb Image and Description -->
-                                <img src="public/ng/img/work/thumbs/image-03.jpg"
-                                     alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                            </li>
-                        	<!-- End Item -->
+            
                         </ul>
                     </section>
                     
@@ -307,9 +188,12 @@ google_ad_height = 90;
 </script>
 </div>
 <div id="popup-content" >
-    <img ng-src="{{currentNews.image}}">
-    <div><h3>{{currentNews.title}}</h3></div>
-    <p>{{currentNews.description}}</p>
+    <img ng-src="{{current.image}}">
+    <div>
+        <h3>{{current.title}}</h3>
+        <span>{{current.date}}</span>
+    </div>
+    <p>{{current.description}}</p>
 </div>
 
 <script type="text/javascript">

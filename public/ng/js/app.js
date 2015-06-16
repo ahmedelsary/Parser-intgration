@@ -56,6 +56,13 @@ myApp.config(function($routeProvider) {
 
 
 myApp.controller('newsCtrl', function ($scope,$http){
+    
+    $scope.news_filter = 'all';
+    
+    $scope.changeFilter = function(filter){
+        $scope.news_filter = filter;
+
+    }
     $http.get('news/view').success(function(data) {
 
               if (data['code'] != 'success') {
@@ -65,8 +72,23 @@ myApp.controller('newsCtrl', function ($scope,$http){
               }
             });
             
+    $http.get('events/view').success(function(data) {
+     
+
+              if (data['code'] != 'success') {
+                  $scope.message = "Error";
+              } else {
+                $scope.events = data['items'];
+                console.log(data);
+              }
+            });
+            
     $scope.displayNews = function (index){
-        $scope.currentNews = $scope.news[index];
+        $scope.current = $scope.news[index];
+    }
+    
+    $scope.displayEvent = function (index){
+        $scope.current = $scope.events[index];
     }
 });
 

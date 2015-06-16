@@ -74,7 +74,7 @@ Class Events extends CI_Controller{
                 'image' => $this->input->post('image'),
                 'date' => now(),
             ); 
-            $this->Events_model->update($items);
+            $this->Events_model->update($item);
             $result['code'] = 'sucess';            
         }else{
             $result['code'] = 'not_allowed';

@@ -50,6 +50,7 @@
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/userctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/menuctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/newsctrl.js"></script>
+    <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/eventsctrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/automatectrl.js"></script>
     <script src="<?php echo base_url(); ?>public/ng/admin/myscripts/reportctrl.js"></script>
     
@@ -132,6 +133,21 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bookmark fa-fw"></i> Events<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#/listevents"><i class="fa fa-bars fa-fw"></i> List Events</a>
+                                </li>
+                                <li>
+                                    <a href="#/addevent"><i class="fa fa-plus-square fa-fw"></i> Add Events</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
                         
                         <li>
                             <a href="#"><i class="fa fa-bookmark fa-fw"></i> Scrapping<span class="fa arrow"></span></a>
