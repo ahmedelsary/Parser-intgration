@@ -30,7 +30,7 @@ app.controller('listUsersCtrl', function($scope, $http,$location) {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-              updateUsers($http,$scope);
+              updateUsers($http,$scope,$location);
             });
     };
     
@@ -52,7 +52,6 @@ app.controller('addUserCtrl', function($scope, $http,$location) {
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
            })
             .success(function(data) {
-              console.log(data);
 
               if (data['code'] != 'success') {
                   $scope.messages = data.msgs;
@@ -85,13 +84,18 @@ function updateUsers(http, scope,location){
               
               if (data['code'] == 'success') {
                   scope.users = data['users'];
-              } else if (data['code'] == 'not_loggedin'){
+
+                  for (var i =0 ; i< scope.users.length; i++){
+                      scope.users[i].banned = (scope.users[i].banned == "1");
+
+                  }
+                  
+              } else if (data['code'] === 'not_loggedin'){
                   location.path('/login').search('next',next)
                 
               }
-               else if (data['code'] == 'not_admin'){
+               else if (data['code'] === 'not_admin'){
                   location.path('/login').search('msg','You are not admin')
-                
               }
             });
 }

@@ -117,9 +117,9 @@ class User extends CI_Controller{
                 $userid = $this->input->post('id');
                 $email = $this->input->post('email');
                 $name = $this->input->post('name');
-                if($this->aauth->is_member('Amdmin', FALSE))
+                if($this->aauth->is_member('Admin', FALSE))
                 {
-                    if ($this->input->post('banned') == 'True')
+                    if ($this->input->post('banned') == 'true')
                     {
                         $this->aauth->ban_user($userid);
                     }
@@ -127,7 +127,7 @@ class User extends CI_Controller{
                     {
                         $this->aauth->unban_user($userid);
                     }
-                    if($this->input->post('admin') == 'True')
+                    if($this->input->post('is_admin') == 'true')
                     {
                         $this->aauth->add_member($userid, 'Admin');
                     }

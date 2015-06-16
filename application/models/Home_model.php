@@ -135,7 +135,7 @@ class Home_model extends CI_Model{
     
     
         function AdvancedSearchMark(){
-        $query = $this->db->query("select producer from cars");
+        $query = $this->db->query("select distinct producer from cars");
 
         $result=$query->result_array();
 

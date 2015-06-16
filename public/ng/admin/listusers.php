@@ -73,7 +73,7 @@
                         <td>{{user.id}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
-                        <td>{{user.banned == 0 ? "False" : "True"}}</td>
+                        <td>{{user.banned}}</td>
                         <td>{{user.is_admin }}</td>
                         <td class="text-center">
                             <a href ng-click="delete(user.id)" />
