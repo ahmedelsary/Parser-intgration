@@ -59,7 +59,7 @@
 <body ng-app="adminApp" ng-controller="mainCtrl">
 
     <div id="wrapper" >
-        <div ng-if="is_loggedin">
+        <div ng-show="is_loggedin">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -73,6 +73,7 @@
             </div>
             <!-- /.navbar-header -->
 
+            
             <ul class="nav navbar-top-links navbar-right">
                 <li>
                     <i class="fa fa-user fa-fw"></i>  Welcome, {{username}}
@@ -88,6 +89,7 @@
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+                    
                     <ul class="nav" id="side-menu">
                         
                         <li>
