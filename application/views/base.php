@@ -174,6 +174,9 @@
                     <li ng-show="user">
                         <a href="#/logout" class="external">Logout</a>
                     </li>
+                    <li ng-show="user">
+                        <a href="#/profile" class="external">Welcome, {{user.name}}</a>
+                    </li>
                 
             </ul>
                 
